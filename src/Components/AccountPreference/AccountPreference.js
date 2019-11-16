@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-const Dashboard = (props) => {
+const AccountPreference = () => {
 
 	const tableStyle = {
 		height : '300px',
@@ -19,11 +18,11 @@ const Dashboard = (props) => {
 		<table style = {tableStyle}>
 		  <tbody>
 		    <tr>
-		      <td className="align-middle text-center" style = {bigHeadingStyle}>Dashboard Page</td>
+		      <td className="align-middle text-center" style = {bigHeadingStyle}>Account Preference Page</td>
 		    </tr>
 		  </tbody>
 		</table>
 	);
 }
 
-export default Dashboard;
+export default AccountPreference;

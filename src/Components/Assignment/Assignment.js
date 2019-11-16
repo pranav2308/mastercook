@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-const Dashboard = (props) => {
+const Assignment = (props) => {
 
 	const tableStyle = {
 		height : '300px',
@@ -15,15 +14,17 @@ const Dashboard = (props) => {
 		fontSize : '350%'
 	}
 
+	const {params} = props.match;
+
 	return(
 		<table style = {tableStyle}>
 		  <tbody>
 		    <tr>
-		      <td className="align-middle text-center" style = {bigHeadingStyle}>Dashboard Page</td>
+		      <td className="align-middle text-center" style = {bigHeadingStyle}>{'Assignment No: '.concat(params.id)}</td>
 		    </tr>
 		  </tbody>
 		</table>
 	);
 }
 
-export default Dashboard;
+export default Assignment;
