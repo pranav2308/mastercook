@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import firebase from '../../Firebase/firebase';
 
 import Navbar from '../Navbar/Navbar';
 
@@ -17,6 +18,21 @@ import './App.css';
 
 class App extends React.Component{
 	
+	constructor(props){
+		super(props);
+		this.state={};
+	}
+
+	componentWillMount() {
+        var _this = this;
+        firebase.auth.onAuthStateChanged(function (user) {
+            _this.setState({user: user});
+        }, function (error) {
+            console.log(error);
+        });
+
+    }
+
 	render(){
 		return (
 			<Router>
