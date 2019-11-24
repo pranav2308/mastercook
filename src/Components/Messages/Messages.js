@@ -1,28 +1,13 @@
-import React from 'react';
-
+import React from "react";
+import "../Messages/Messages.css";
 const Messages = () => {
-
-	const tableStyle = {
-		height : '300px',
-		marginTop:  '10%',
-  		marginLeft: 'auto',
-  		marginRight: 'auto'
-	}
-	const bigHeadingStyle = {
-		color : '#7a653f',
-		fontWeight: 'bold',
-		fontSize : '350%'
-	}
-
-	return(
-		<table style = {tableStyle}>
-		  <tbody>
-		    <tr>
-		      <td className="align-middle text-center" style = {bigHeadingStyle}>Messages Page</td>
-		    </tr>
-		  </tbody>
-		</table>
-	);
-}
+  return (
+    <div class="messages-container">
+      <div class="messages-header">Header</div>
+      <div class="messages-inbox">Inbox</div>
+      <div class="messages-content">Content</div>
+    </div>
+  );
+};
 
 export default Messages;
