@@ -1,7 +1,21 @@
-import React from 'react';
-import '../Login/Login.css'
+import React, {Component} from 'react';
+import '../Login/Login.css';
+import firebase from '../../../Firebase/firebase';
+import {Redirect} from "react-router-dom";
 
-const Login = () => {
+class Login extends Component{
+	constructor(props){
+		this.state = {};
+	}
+
+	render(){
+		return (
+			<div>in login</div>
+		);
+	}
+}
+
+/*const Login = () => {
 
 	const tableStyle = {
 		paddingLeft: '10px',
@@ -28,6 +42,6 @@ const Login = () => {
 	  </div>
 		
 	);
-}
+}*/
 
 export default Login;
