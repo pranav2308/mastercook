@@ -1,31 +1,82 @@
 .messages-header {
-  border: solid red 2px;
   width: 100%;
-  height: 15%;
+  height: 10%;
   position: absolute;
+  background-color: whitesmoke;
   top: 0;
+  border-bottom: 2px solid #bfbfbf;
 }
 .messages-inbox {
-  border: solid blue 2px;
   overflow-y: scroll;
   left: 0;
+  background-color: white;
   bottom: 0;
-  width: 25%;
-  height: 85%;
+  width: 30%;
+  height: 90%;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #bfbfbf;
+  padding: 0;
 }
 .messages-content {
-  border: solid green 2px;
   position: absolute;
-  height: 85%;
-  width: 75%;
+  height: 90%;
+  width: 70%;
   bottom: 0;
+  background-color: white;
   right: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 .messages-container {
   height: 100vh;
   width: 100%;
   display: flex;
   position: relative;
-  border: salmon solid 2px;
+}
+.messages-icon {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.messages-row {
+  height: 150px;
+  width: 100%;
+  border: gray solid 2px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.messages-row:hover {
+  background-color: #eeeeee;
+}
+
+p {
+  font-size: 24px;
+  font-family: Helvetica;
+  font-weight: normal;
+  margin-top: 20px;
+  color: gray;
+}
+.menulist-container {
+  padding: 0px;
+}
+
+.dropdown-container {
+  padding: 10px;
+}
+
+.inputlabel-container {
+  width: 200px;
+}
+.select-container {
+  width: 200px;
 }
