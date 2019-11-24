@@ -12,7 +12,7 @@ import CourseBrowser from '../CourseBrowser/CourseBrowser';
 import AccountPreference from '../AccountPreference/AccountPreference';
 import Messages from '../Messages/Messages';
 import Assignment from '../Assignment/Assignment';
-
+import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
 class App extends React.Component{
@@ -32,7 +32,7 @@ class App extends React.Component{
 					<Route path = "/settings/" component = {AccountPreference}/>
 					<Route path = "/messages" component = {Messages}/>
 					<Route path = "/assignment/:id" component = {Assignment}/>
-
+					<Route component = {PageNotFound}/>
 				</Switch>
 			 </Router>
   		);
