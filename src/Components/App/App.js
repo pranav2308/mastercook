@@ -1,9 +1,12 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+<<<<<<< HEAD
 import firebase from '../../Firebase/firebase';
+=======
+import 'typeface-roboto';
+>>>>>>> 2a6c8e368cabfc8713bd5b2eca331eaf274ea271
 
 import Navbar from '../Navbar/Navbar';
-
 import Homepage from '../Homepage/Homepage';
 import Login from '../Authentication/Login/Login';
 import Register from '../Authentication/Register/Register';
