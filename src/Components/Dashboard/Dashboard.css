@@ -1,0 +1,35 @@
+.dashboard-addon{
+	margin-top: 1%;
+	margin-left: 5%;
+	width: 18rem;
+}
+
+.progress-bar-addon{
+	width: 25%;	
+}
+
+.heading{
+	margin-left: 5%;
+	margin-top: 5%;
+}
+
+.sidebar-list {
+	color: #7a653f;
+	margin-left: 4%;
+	margin-top: 10%;
+}
+
+
+.dashboard-container{
+	position: relative;
+	height: 100%;
+	width: 100vw;
+	border: solid 1px #4b7a3f;
+}
+.sidenav-container {
+	position: absolute;
+	height: 100%;
+	right: 0;
+	border: solid 5px #4b7a3f;
+	width: 25%;
+}
