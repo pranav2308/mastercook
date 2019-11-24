@@ -1,0 +1,22 @@
+.resultCollection{
+	margin-left: 20%;
+	margin-top: 30%;
+}
+
+.resultCardImage{
+	width: 200px;
+	height: 200px;
+}
+.resultCard{
+	width : 50%;
+	height: 200px;
+	border: solid 2px red;
+}
+
+.embed{
+	width: 100%;
+}
+
+.optionContainer{
+	display: flex;
+}
