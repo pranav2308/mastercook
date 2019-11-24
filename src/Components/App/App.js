@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import 'typeface-roboto';
 
 import Navbar from '../Navbar/Navbar';
-
 import Homepage from '../Homepage/Homepage';
 import Login from '../Authentication/Login/Login';
 import Register from '../Authentication/Register/Register';
