@@ -39,7 +39,6 @@ const Messages = () => {
           <Select
             labelId="demo-controlled-open-select-label"
             id="demo-controlled-open-select"
-            class="select-container"
           >
             <MenuItem value="">
               <em>None</em>
