@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {Form, Button} from "react-bootstrap";
 import firebase from '../../Firebase/firebase';
 import {Redirect} from "react-router-dom";
-
-const formStyle = {
-	padding: '250px',
-};
+import '../Homepage/Homepage.css';
 
 class Homepage extends Component{
 	
@@ -63,26 +60,31 @@ class Homepage extends Component{
         }
 
 		return(
-			<Form onSubmit={this.onSubmit} style={formStyle}>
-  				<Form.Group>
-    			<Form.Label>Email: </Form.Label>
-    			<Form.Control id="email" type="email" placeholder="Enter email" />
-    			<Form.Text className="text-muted">
-      				We'll never share your email with anyone else.
-    			</Form.Text>
-  				</Form.Group>
+			<div class = "homepage-container">
+				<div class = "login-container">
+					<Form onSubmit={this.onSubmit}>
+						<Form.Group>
+						<Form.Label>Email: </Form.Label>
+						<Form.Control id="email" type="email" placeholder="Enter email" />
+						<Form.Text className="text-muted">
+							We'll never share your email with anyone else.
+						</Form.Text>
+						</Form.Group>
 
-  				<Form.Group>
-    			<Form.Label>Password: </Form.Label>
-    			<Form.Control id="password" type="password" placeholder="Password" />
-  				</Form.Group>
-  				<Form.Group controlId="formCheckbox">
-    			<Form.Check type="checkbox" label="Check me out" />
-  				</Form.Group>
-  				<Button variant="primary" type="submit">
-    				Log in/Sign up
-  				</Button>
-			</Form>
+						<Form.Group>
+						<Form.Label>Password: </Form.Label>
+						<Form.Control id="password" type="password" placeholder="Password" />
+						</Form.Group>
+						<Form.Group controlId="formCheckbox">
+						<Form.Check type="checkbox" label="Check me out" />
+						</Form.Group>
+						<Button variant="primary" type="submit">
+							Log in/Sign up
+						</Button>
+					</Form>
+				</div>
+			</div>
+			
 		)
 	}
 }

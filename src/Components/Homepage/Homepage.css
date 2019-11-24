@@ -1,0 +1,15 @@
+.login-container {
+    border: solid red 2px; 
+    height: 600px;
+    width: 400px; 
+    padding-left: 10px; 
+    display: flex; 
+    position: absolute; 
+    right: 0; 
+}
+
+.homepage-container {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+}
