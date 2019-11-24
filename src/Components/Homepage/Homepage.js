@@ -1,10 +1,14 @@
-//test comment
 import React, {Component} from 'react';
 import {Form, Button} from "react-bootstrap";
 import firebase from '../../Firebase/firebase';
 import {Redirect} from "react-router-dom";
 
+const formStyle = {
+	padding: '250px',
+};
+
 class Homepage extends Component{
+	
 	constructor(props){
 		super(props);
 
@@ -59,7 +63,7 @@ class Homepage extends Component{
         }
 
 		return(
-			<Form onSubmit={this.onSubmit}>
+			<Form onSubmit={this.onSubmit} style={formStyle}>
   				<Form.Group>
     			<Form.Label>Email: </Form.Label>
     			<Form.Control id="email" type="email" placeholder="Enter email" />
