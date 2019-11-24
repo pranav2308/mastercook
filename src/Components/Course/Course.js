@@ -6,20 +6,20 @@ import '../Course/Course.css'
 
 const Course = (props) => {
 
-	
-	const {params} = props.match;
-	return(
-		
-		<div class = "courseContainer">
-			
-			<div class = "courseContent">
-				<CourseContent/>
+
+	const { params } = props.match;
+	return (
+
+		<div class="courseContainer">
+
+			<div class="courseContent">
+				<CourseContent />
 			</div>
-			<div class = "lessonsContainer">
-				<Lessons/>
+			<div class="lessonsContainer">
+				<Lessons />
 			</div>
-			<div class = "discussionContent">
-				<Discussions/>
+			<div class="discussionContent">
+				<Discussions />
 			</div>
 		</div>
 	);
