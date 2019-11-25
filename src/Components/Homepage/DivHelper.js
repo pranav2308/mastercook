@@ -6,7 +6,6 @@ const RegularDiv = (props)=> {
     <div class = "login-container">
       <Form>
 						<Form.Group>
-						<Form.Label>Email: </Form.Label>
 						<Form.Control id="email" type="email" placeholder="Enter Email" onChange={props.emailOnChange}/>
 						<Form.Text className="text-muted">
 							We'll never share your email with anyone else.
@@ -14,7 +13,6 @@ const RegularDiv = (props)=> {
 						</Form.Group>
 					
 						<Form.Group>
-						<Form.Label>Password: </Form.Label>
 						<Form.Control id="password" type="password" placeholder="Enter Password" onChange={props.passwordOnChange}/>
 						</Form.Group>
 						<Form.Group controlId="formCheckbox">
@@ -37,36 +35,30 @@ const RegisterDiv = (props)=> {
         <div class = "register-container">
         <Form>
             <Form.Group>
-            <Form.Label>First Name: </Form.Label>
-            <Form.Control id="first-name" type="text" placeholder="Enter First Name" />
+            <Form.Control id="first-name" type="text" placeholder="First Name" onChange={props.userFirstNameOnChange}/>
             </Form.Group>
 
             <Form.Group>
-            <Form.Label>Last Name: </Form.Label>
-            <Form.Control id="last-name" type="text" placeholder="Enter Last Name" />
+            <Form.Control id="last-name" type="text" placeholder="Last Name" onChange={props.userLastNameOnChange}/>
             </Form.Group>
 
             <Form.Group>
-            <Form.Label>Email: </Form.Label>
-            <Form.Control id="email" type="email" placeholder="Enter Email" />
+            <Form.Control id="email" type="email" placeholder="Email" onChange={props.userEmailOnChange}/>
             <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
             </Form.Text>
             </Form.Group>
 
             <Form.Group>
-            <Form.Label>Username: </Form.Label>
-            <Form.Control id="username" type="text" placeholder="Enter Username" />
+            <Form.Control id="username" type="text" placeholder="Username" onChange={props.usernameOnChange}/>
             </Form.Group>
         
             <Form.Group>
-            <Form.Label>Password: </Form.Label>
-            <Form.Control id="password" type="password" placeholder="Enter Password" />
+            <Form.Control id="password" type="password" placeholder="Password" onChange={props.userPasswordOnChange}/>
             </Form.Group>
 
             <Form.Group>
-            <Form.Label>Password: </Form.Label>
-            <Form.Control id="password" type="password" placeholder="Confirm Password" />
+            <Form.Control id="password" type="password" placeholder="Confirm Password" onChange={props.confirmedPasswordOnChange}/>
             </Form.Group>
 
             <Button variant="primary" type="button" onClick={props.handleRegister}>

@@ -1,13 +1,33 @@
 .login-container {
-    background-color: aliceblue;
-    border: solid red 2px; 
-    height: 400px;
-    width: 400px; 
-    padding-left: 50px; 
-    padding-top: 50px;
+    background-color: whitesmoke;
+    height: 350px;
+    width: 350px; 
+    padding-left: 40px; 
+    padding-top: 60px;
     display: flex; 
     position: absolute; 
-    right: 0; 
+    right: 80px; 
+    top: 40px;
+    border-radius: 15px;
+}
+
+.bg-image {
+    background-image: url(cook.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.register-container {
+    border-radius: 15px;
+    background-color: whitesmoke;
+    height: 450px;
+    width: 380px; 
+    padding-left: 50px; 
+    padding-top: 40px;
+    display: flex; 
+    position: absolute; 
+    right: 80px; 
+    top: 40px; 
 }
 
 .homepage-container {
@@ -19,4 +39,5 @@
 .signup-link {
     color: blue;
     text-decoration-line: underline;
+    cursor: pointer;
 }
