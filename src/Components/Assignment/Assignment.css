@@ -1,0 +1,63 @@
+
+body{
+    height: 100%;
+    width: 100%;
+    
+}
+.textContainer {
+    /* border:solid blue 2px; */
+    height: 30vh;
+    width: 70%;
+    position: relative;
+    margin-bottom: 1%;
+    border: solid 2px white;
+    text-align: center;
+    font-display: white;
+    text-decoration: aliceblue;
+    background-color : lightgrey;
+}
+
+.progressContainer {
+    /* border: solid green 2px; */
+    height: 50vh;
+    width: 70%;
+    position: absolute;
+    display:flex;
+    overflow:hidden; 
+    left : 0;
+    overflow-y: scroll; 
+    border: solid 2px white;
+    margin-bottom: 1%;
+    
+
+}
+.buttonContainer {
+    position :absolute;
+    bottom : 0;
+    margin-left: 50%;
+    align-items: center;
+}
+.buttonUpload {
+    position: absolute;
+    right: 5%;
+    top : 15%;
+
+    
+}
+.uploadText {
+    position:absolute;
+    right:5%;
+    top:23%;
+    text-decoration: underline;
+    font-display: white;
+}
+
+.sidenav-container {
+	position: absolute;
+	height: 50%;
+	right: 0;
+	border: solid white;
+    width: 25%;
+    margin-top: 10%;
+    overflow-y: scroll ;
+}
