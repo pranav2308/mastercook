@@ -12,17 +12,18 @@ import CourseBrowser from '../CourseBrowser/CourseBrowser';
 import AccountPreference from '../AccountPreference/AccountPreference';
 import Messages from '../Messages/Messages';
 import Assignment from '../Assignment/Assignment';
+import ViewGrades from '../ViewGrades/ViewGrades';
 
 import './App.css';
 
 class App extends React.Component{
-	
+
 	render(){
 		return (
 			<Router>
 				<Navbar/>
 				<Switch>
-					
+
 					<Route exact path = "/" component = {Homepage}/>
 					<Route exact path = "/login" component = {Login}/>
 					<Route exact path = "/register" component = {Register}/>
@@ -32,12 +33,12 @@ class App extends React.Component{
 					<Route path = "/settings/" component = {AccountPreference}/>
 					<Route path = "/messages" component = {Messages}/>
 					<Route path = "/assignment/:id" component = {Assignment}/>
-
+          <Route path = "/ViewGrades" component = {ViewGrades}/>
 				</Switch>
 			 </Router>
   		);
 	}
-  
+
 }
 
 export default App;
