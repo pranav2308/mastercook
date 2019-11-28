@@ -34,7 +34,7 @@ body{
 .buttonContainer {
     position :absolute;
     bottom : 0;
-    margin-left: 50%;
+    margin-left: 45%;
     align-items: center;
 }
 .buttonUpload {
@@ -60,4 +60,13 @@ body{
     width: 25%;
     margin-top: 10%;
     overflow-y: scroll ;
+}
+.form-row{
+    position : absolute;
+    right : 56%;
+    width : 10%;
+    height : 5%;
+    bottom : 2%;
+    text-align: center;
+
 }
