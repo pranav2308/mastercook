@@ -124,18 +124,24 @@ const Assignment = (props) => {
 		<progressContainer/>
 	</div>
 <div class = "buttonContainer">
- <button type="button" class="btn btn-primary btn-lg">Submit</button>
+ <button type="button" class="btn btn-primary btn-lg">Submit Grades</button>
 	<button type="button" class="btn btn-secondary btn-lg">Cancel</button>
 
 </div>
 <div class = "buttonUpload">
-<button type="button" class="btn btn-primary btn-lg">Upload</button>
+<button type="button" class="btn btn-primary btn-lg">Delete Assignment</button>
+</div>
+
+  <div class="form-row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Enter grades"/>
+    </div>
+    </div>
+    
+  
 
 </div>
-<div class = "uploadText">
-	<p>filename.pdf</p>
-</div>
-</div>
+
 
 
 	);
