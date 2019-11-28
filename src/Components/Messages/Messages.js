@@ -1,28 +1,87 @@
-import React from 'react';
+import { faEnvelopeOpenText } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
+import "../Messages/Messages.css";
 
 const Messages = () => {
+  const messages = [
+    ["message1", "this is my message!"],
+    ["message2", "this is my message!"],
+    ["message3", "this is my message!"],
+    ["message4", "this is my message!"],
+    ["message5", "this is my message!"],
+    ["message6", "this is my message!"],
+    ["message7", "this is my message!"],
+    ["message8", "this is my message!"],
+    ["message9", "this is my message!"],
+    ["message10", "this is my message!"],
+    ["message11", "this is my message!"],
+    ["message12", "this is my message!"],
+    ["message13", "this is my message!"],
+    ["message14", "this is my message!"]
+  ];
 
-	const tableStyle = {
-		height : '300px',
-		marginTop:  '10%',
-  		marginLeft: 'auto',
-  		marginRight: 'auto'
-	}
-	const bigHeadingStyle = {
-		color : '#7a653f',
-		fontWeight: 'bold',
-		fontSize : '350%'
-	}
+  const useStyles = makeStyles(theme => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2)
+    }
+  }));
+  const classes = useStyles();
 
-	return(
-		<table style = {tableStyle}>
-		  <tbody>
-		    <tr>
-		      <td className="align-middle text-center" style = {bigHeadingStyle}>Messages Page</td>
-		    </tr>
-		  </tbody>
-		</table>
-	);
-}
+  return (
+    <div class="messages-container">
+      <div class="messages-header">
+        <div>
+          <FormControl class={classes.formControl}>
+            <InputLabel
+              id="demo-controlled-open-select-label"
+              class="inputlabel-container"
+            >
+              Course
+            </InputLabel>
+            <Select
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              class="select-container"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Cooking</MenuItem>
+              <MenuItem value={20}>Dicing</MenuItem>
+              <MenuItem value={30}>Stews</MenuItem>
+              <MenuItem value={10}>Saute</MenuItem>
+              <MenuItem value={20}>Curry</MenuItem>
+              <MenuItem value={30}>Vegetarian</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+      </div>
+      <div class="messages-inbox">
+        <MenuList class="menulist-container">
+          {messages.map(message => (
+            <MenuItem class="messages-row">{message[0]}</MenuItem>
+          ))}
+        </MenuList>
+      </div>
+      <div class="messages-content">
+        <div class="messages-icon">
+          <FontAwesomeIcon icon={faEnvelopeOpenText} size="10x" color="gray" />
+        </div>
+        <p>No Conversations Selected</p>
+      </div>
+    </div>
+  );
+};
 
 export default Messages;
