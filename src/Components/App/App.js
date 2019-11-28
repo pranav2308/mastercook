@@ -12,6 +12,7 @@ import CourseBrowser from '../CourseBrowser/CourseBrowser';
 import AccountPreference from '../AccountPreference/AccountPreference';
 import Messages from '../Messages/Messages';
 import Assignment from '../Assignment/Assignment';
+import CourseStudent from '../CourseStudent/CourseStudent';
 
 import './App.css';
 
@@ -27,6 +28,7 @@ class App extends React.Component{
 					<Route exact path = "/login" component = {Login}/>
 					<Route exact path = "/register" component = {Register}/>
 					<Route exact path = "/dashboard/" component = {Dashboard}/>
+					<Route exact path = "/CourseStudent/" component = {CourseStudent}/>
 					<Route path = "/course/:id" component = {Course}/>
 					<Route path = "/courseBrowser/" component = {CourseBrowser}/>
 					<Route path = "/settings/" component = {AccountPreference}/>
