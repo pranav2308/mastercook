@@ -5,6 +5,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import "../Messages/Messages.css";
 
@@ -26,28 +27,45 @@ const Messages = () => {
     ["message14", "this is my message!"]
   ];
 
+  const useStyles = makeStyles(theme => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2)
+    }
+  }));
+  const classes = useStyles();
+
   return (
     <div class="messages-container">
       <div class="messages-header">
-        <FormControl class="dropdown-container">
-          <InputLabel
-            id="demo-controlled-open-select-label"
-            class="inputlabel-container"
-          >
-            Age
-          </InputLabel>
-          <Select
-            labelId="demo-controlled-open-select-label"
-            id="demo-controlled-open-select"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
+        <div>
+          <FormControl class={classes.formControl}>
+            <InputLabel
+              id="demo-controlled-open-select-label"
+              class="inputlabel-container"
+            >
+              Course
+            </InputLabel>
+            <Select
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              class="select-container"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Cooking</MenuItem>
+              <MenuItem value={20}>Dicing</MenuItem>
+              <MenuItem value={30}>Stews</MenuItem>
+              <MenuItem value={10}>Saute</MenuItem>
+              <MenuItem value={20}>Curry</MenuItem>
+              <MenuItem value={30}>Vegetarian</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
       </div>
       <div class="messages-inbox">
         <MenuList class="menulist-container">
