@@ -1,8 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
+import '../Login/Login.css';
+import firebase from '../../../Firebase/firebase';
+import {Redirect} from "react-router-dom";
 
-const Login = () => {
+class Login extends Component{
+	constructor(props){
+		this.state = {};
+	}
+
+	render(){
+		return (
+			<div>in login</div>
+		);
+	}
+}
+
+/*const Login = () => {
 
 	const tableStyle = {
+		paddingLeft: '10px',
 		height : '300px',
 		marginTop:  '10%',
   		marginLeft: 'auto',
@@ -15,14 +31,17 @@ const Login = () => {
 	}
 
 	return(
-		<table style = {tableStyle}>
-		  <tbody>
-		    <tr>
-		      <td className="align-middle text-center" style = {bigHeadingStyle}>Login Page</td>
-		    </tr>
-		  </tbody>
-		</table>
+		<div class="login-container">
+			<table style = {tableStyle}>
+		<tbody>
+		  <tr>
+			<td className="align-middle text-center" style = {bigHeadingStyle}>Login Page</td>
+		  </tr>
+		</tbody>
+	  </table>
+	  </div>
+		
 	);
-}
+}*/
 
 export default Login;
