@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import SearchEngine from "../SearchEngine/SearchEngine";
 const Navbar = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarTogglerDemo03"
@@ -13,51 +13,41 @@ const Navbar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <NavLink class="navbar-brand" to="/">
+      <NavLink className="navbar-brand" to="/">
         MasterCook
       </NavLink>
 
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li className="nav-item active">
             <NavLink className="nav-link" to="/">
-              Home <span class="sr-only">(current)</span>
+              Home <span className="sr-only">(current)</span>
             </NavLink>
           </li>
-          <li class="nav-item active">
+          <li className="nav-item active">
             <NavLink className="nav-link" to="/login">
-              Login <span class="sr-only">(current)</span>
+              Login <span className="sr-only">(current)</span>
             </NavLink>
           </li>
-          <li class="nav-item active">
+          <li className="nav-item active">
             <NavLink className="nav-link" to="/register">
-              Register <span class="sr-only">(current)</span>
+              Register <span className="sr-only">(current)</span>
             </NavLink>
           </li>
-          <li class="nav-item active">
+          <li className="nav-item active">
             <NavLink className="nav-link" to="/course/7">
-              Course <span class="sr-only">(current)</span>
+              Course <span className="sr-only">(current)</span>
             </NavLink>
           </li>
-          <li class="nav-item active">
+          <li className="nav-item active">
             <NavLink className="nav-link" to="/messages">
-              Messages <span class="sr-only">(current)</span>
+              Messages <span className="sr-only">(current)</span>
             </NavLink>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
+        <SearchEngine />
       </div>
     </nav>
   );

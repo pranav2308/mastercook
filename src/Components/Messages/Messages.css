@@ -70,15 +70,11 @@ p {
   padding: 0px;
 }
 
-.inputlabel-container {
-  width: 200px;
-  border: solid red 2px;
-}
-.MuiSelect-selectMenu {
+#demo-controlled-open-select {
   width: 100px;
+  margin-left: 5px;
 }
 
 #demo-controlled-open-select-label {
   margin-left: 10px;
-  margin-top: 8px;
 }
