@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Form, Button} from "react-bootstrap";
 import firebase from '../../Firebase/firebase';
 import {Redirect} from "react-router-dom";
 import '../Homepage/Homepage.css';
@@ -21,6 +20,7 @@ class Homepage extends Component{
 			userLastName: '',
 			username: '',
 			userConfirmedPassword: '',
+			accountType: 'student',
 		};
 
 		this.onLogin = this.onLogin.bind(this);
@@ -113,25 +113,25 @@ class Homepage extends Component{
 		if (this.state.userFirstName == ''){
 			alert('First Name Cannot Be Blank.');
 		}
-		if (this.state.userLastName == ''){
+		else if (this.state.userLastName == ''){
 			alert('Last Name Cannot Be Blank.');
 		}
-		if (this.state.userEmail == ''){
+		else if (this.state.userEmail == ''){
 			alert('Email Cannot Be Blank.');
 		}
-		if (this.state.username == ''){
+		else if (this.state.username == ''){
 			alert('Username Cannot Be Blank.');
 		}
-		if (this.state.userPassword == ''){
+		else if (this.state.userPassword == ''){
 			alert('Password Cannot Be Blank.');
 		}
-		if (this.state.userPassword.length < 8){
+		else if (this.state.userPassword.length < 8){
 			alert('Password Must Be More Than 8 Characters.')
 		}
-		if (this.state.userConfirmedPassword == ''){
+		else if (this.state.userConfirmedPassword == ''){
 			alert('Please Confirm Password.');
 		}
-		if (this.state.userPassword != this.state.userConfirmedPassword) {
+		else if (this.state.userPassword != this.state.userConfirmedPassword) {
 			alert('Password and Confirmation Do Not Match.');
 		}
 
@@ -141,7 +141,14 @@ class Homepage extends Component{
 				firebase.firestore.collection("Users").doc(this.state.username).set({
 					FirstName: this.state.userFirstName,
 					LastName: this.state.userLastName,
+					AccountType: this.state.accountType,
 					Email: this.state.userEmail,
+					EnrolledCourses: [],
+					FontSize: '12',
+					ProfilePic: '',
+					Language: 'Eng',
+					ShareProgress: false,
+					Messages: []
 				}).then(() => { console.log("account created");})
 			})
 			.catch((error) => {
