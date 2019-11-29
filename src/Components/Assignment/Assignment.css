@@ -4,12 +4,12 @@ body{
     width: 100%;
     
 }
-.textContainer {
+.headingContainer {
     /* border:solid blue 2px; */
     height: 30vh;
     width: 70%;
     position: relative;
-    margin-bottom: 1%;
+    margin: 1%;
     border: solid 2px white;
     text-align: center;
     font-display: white;
@@ -17,11 +17,12 @@ body{
     background-color : lightgrey;
 }
 
-.progressContainer {
+.questionsContainer {
     /* border: solid green 2px; */
     height: 50vh;
     width: 70%;
     position: absolute;
+    margin-left: 1%;
     display:flex;
     overflow:hidden; 
     left : 0;
@@ -31,22 +32,33 @@ body{
     
 
 }
+
+.question-answer{
+    margin: 1%;
+}
+
+.question-text{
+    color: #b6bd8f;
+}
 .buttonContainer {
     position :absolute;
     bottom : 0;
-    margin-left: 50%;
-    align-items: center;
+    width: 100vw;
+    margin-bottom: 10px;
+    margin-left: auto;
+    /*align-items: center;*/
 }
+
 .buttonUpload {
     position: absolute;
-    right: 5%;
+    right: 10%;
     top : 15%;
 
     
 }
 .uploadText {
     position:absolute;
-    right:5%;
+    right:7%;
     top:23%;
     text-decoration: underline;
     font-display: white;
@@ -60,4 +72,17 @@ body{
     width: 25%;
     margin-top: 10%;
     overflow-y: scroll ;
+}
+
+.progress-text{
+    position: absolute;
+    right: 19%;
+    bottom:12%;
+}
+
+.quiz-progress-bar {
+    position: absolute;
+    right : 0;
+    bottom : 10%;
+    width : 25%;
 }
