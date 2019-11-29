@@ -5,7 +5,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import Select from "@material-ui/core/Select";
-import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import "../Messages/Messages.css";
 
@@ -27,32 +26,18 @@ const Messages = () => {
     ["message14", "this is my message!"]
   ];
 
-  const useStyles = makeStyles(theme => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2)
-    }
-  }));
-  const classes = useStyles();
-
   return (
-    <div class="messages-container">
-      <div class="messages-header">
+    <div className="messages-container">
+      <div className="messages-header">
         <div>
-          <FormControl class={classes.formControl}>
-            <InputLabel
-              id="demo-controlled-open-select-label"
-              class="inputlabel-container"
-            >
+          <FormControl>
+            <InputLabel id="demo-controlled-open-select-label">
               Course
             </InputLabel>
             <Select
               labelId="demo-controlled-open-select-label"
               id="demo-controlled-open-select"
-              class="select-container"
+              className="select-container"
             >
               <MenuItem value="">
                 <em>None</em>
@@ -67,15 +52,15 @@ const Messages = () => {
           </FormControl>
         </div>
       </div>
-      <div class="messages-inbox">
-        <MenuList class="menulist-container">
+      <div className="messages-inbox">
+        <MenuList className="menulist-container">
           {messages.map(message => (
-            <MenuItem class="messages-row">{message[0]}</MenuItem>
+            <MenuItem className="messages-row">{message[0]}</MenuItem>
           ))}
         </MenuList>
       </div>
-      <div class="messages-content">
-        <div class="messages-icon">
+      <div className="messages-content">
+        <div className="messages-icon">
           <FontAwesomeIcon icon={faEnvelopeOpenText} size="10x" color="gray" />
         </div>
         <p>No Conversations Selected</p>
