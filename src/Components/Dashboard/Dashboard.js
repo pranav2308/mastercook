@@ -30,6 +30,16 @@ const Dashboard = (props) => {
 			<div className = "main-container container">
 				<div className = "row">
 					<div className = "col">
+						<h2 className = 'heading text-left'> Welcome [Firstname]!</h2>
+					</div>
+				</div>
+				<div className = "row">
+					<div className = "col">
+						<p className = 'font-weight-light font-italic text-left'> *You are currently logged-in as a [userType].</p>
+					</div>
+				</div>
+				<div className = "row">
+					<div className = "col">
 						<h2 className = 'heading text-left'> Enrolled courses</h2>
 					</div>
 				</div>
@@ -103,6 +113,7 @@ const Dashboard = (props) => {
 					</div>
 
 				</div>
+				
 				
 			</div>
 		</div>

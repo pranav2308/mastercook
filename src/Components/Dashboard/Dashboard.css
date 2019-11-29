@@ -1,6 +1,7 @@
 .card-addon{
 	margin-top: 1%;
 	margin-left: 5%;
+	margin-bottom: 2%;
 	width: 18rem;
 }
 
@@ -22,16 +23,16 @@
 
 .dashboard-container{
 	position: relative;
-	height: 100vw;
-	width: 100vw;
+	height: 100vh;
+	width: 100%;
 	/*border: solid 5px yellow;*/
 }
 .sidenav-container {
 	position: absolute;
-	height: 100%;
+	/*height: 100%;*/
 	right: 0;
 	border: solid 5px #ff0000;
-	width: 25vw;
+	width: 25%;
 }
 
 .main-container{
@@ -39,5 +40,6 @@
 	height: 100%;
 	left:0;
 	/*border: solid 5px #ff0000;*/
-	width: 75vw;
+	width: 75%;
+	margin-bottom:20%;
 }
