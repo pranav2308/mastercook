@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from '../../Firebase/firebase';
 import './CourseBrowser.css';
 
 const CourseBrowser = () => {

@@ -21,23 +21,4 @@ const Course = props => {
   );
 };
 
-
-	const { params } = props.match;
-	return (
-
-		<div class="courseContainer">
-
-			<div class="courseContent">
-				<CourseContent />
-			</div>
-			<div class="lessonsContainer">
-				<Lessons />
-			</div>
-			<div class="discussionContent">
-				<Discussions />
-			</div>
-		</div>
-	);
-
-
 export default Course;
