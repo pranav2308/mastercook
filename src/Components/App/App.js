@@ -12,9 +12,10 @@ import Dashboard from "../Dashboard/Dashboard";
 import Homepage from "../Homepage/Homepage";
 import Messages from "../Messages/Messages";
 import Navbar from "../Navbar/Navbar";
+import CourseStudent from '../CourseStudent/CourseStudent';
 import "./App.css";
 
-class App extends React.Component {
+/*class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -30,26 +31,32 @@ class App extends React.Component {
         console.log(error);
       }
     );
-  }
+  }*/
 
-  render() {
-    return (
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/dashboard/" component={Dashboard} />
-          <Route path="/course/:id" component={Course} />
-          <Route path="/courseBrowser/" component={CourseBrowser} />
-          <Route path="/settings/" component={AccountPreference} />
-          <Route path="/messages" component={Messages} />
-          <Route path="/assignment/:id" component={Assignment} />
-        </Switch>
-      </Router>
-    );
-  }
+class App extends React.Component{
+	
+	render(){
+		return (
+			<Router>
+				<Navbar/>
+				<Switch>
+					
+					<Route exact path = "/" component = {Homepage}/>
+					<Route exact path = "/login" component = {Login}/>
+					<Route exact path = "/register" component = {Register}/>
+					<Route exact path = "/dashboard/" component = {Dashboard}/>
+					<Route exact path = "/CourseStudent/" component = {CourseStudent}/>
+					<Route path = "/course/:id" component = {Course}/>
+					<Route path = "/courseBrowser/" component = {CourseBrowser}/>
+					<Route path = "/settings/" component = {AccountPreference}/>
+					<Route path = "/messages" component = {Messages}/>
+					<Route path = "/assignment/:id" component = {Assignment}/>
+
+				</Switch>
+			 </Router>
+  		);
+	}
+  
 }
 
 export default App;

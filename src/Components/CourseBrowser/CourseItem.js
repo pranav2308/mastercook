@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Card, Button} from 'react-bootstrap';
 import firebase from '../../Firebase/firebase';
 
 let courseRef = firebase.firestore.collection('Courses');
@@ -20,8 +19,6 @@ class CourseItem extends Component {
     componentDidMount(){
         courseRef.onSnapshot(async (s) => {
             await s.forEach(doc => {
-                console.log(doc.id);
-                console.log(doc.data());
                 this.setState({data: doc.data()});
                 this.setState({
                     name: this.state.data.Name, 
@@ -30,8 +27,6 @@ class CourseItem extends Component {
                 
                 });
             })
-            console.log(this.state.name);
-            console.log(this.state.description);
         })
     }
 
