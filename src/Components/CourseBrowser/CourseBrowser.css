@@ -1,0 +1,21 @@
+.tableStyle {
+  height: 300px;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bigHeadingStyle {
+  color: #7a653f;
+  font-weight: bold;
+  font-size: 350%;
+}
+.test-button {
+  border: red solid 2px;
+  height: 100px;
+  width: 200px;
+}
+.course-browser-container {
+  height: 100%;
+  width: 100%;
+  border: blue solid 2px;
+}
