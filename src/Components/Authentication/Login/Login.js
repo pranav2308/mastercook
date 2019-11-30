@@ -1,18 +1,14 @@
-import React, {Component} from 'react';
-import '../Login/Login.css';
-import firebase from '../../../Firebase/firebase';
-import {Redirect} from "react-router-dom";
+import React, { Component } from "react";
+import "../Login/Login.css";
 
-class Login extends Component{
-	constructor(props){
-		this.state = {};
-	}
+class Login extends Component {
+  constructor(props) {
+    this.state = {};
+  }
 
-	render(){
-		return (
-			<div>in login</div>
-		);
-	}
+  render() {
+    return <div>in login</div>;
+  }
 }
 
 /*const Login = () => {
@@ -31,7 +27,7 @@ class Login extends Component{
 	}
 
 	return(
-		<div class="login-container">
+		<div className="login-container">
 			<table style = {tableStyle}>
 		<tbody>
 		  <tr>

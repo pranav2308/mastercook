@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import firebase from '../../Firebase/firebase';
 import 'typeface-roboto';
-
 import Navbar from '../Navbar/Navbar';
 import Homepage from '../Homepage/Homepage';
 import Login from '../Authentication/Login/Login';
@@ -53,7 +52,6 @@ class App extends React.Component{
 			 </Router>
   		);
 	}
-  
 }
 
 export default App;

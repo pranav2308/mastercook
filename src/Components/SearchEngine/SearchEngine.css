@@ -1,0 +1,14 @@
+.search-engine-wrapper {
+  border: solid red 2px;
+  height: 40px;
+  width: 100px;
+}
+
+.search-bar {
+  border: solid blue 2px;
+}
+
+.search-button {
+  border: solid red 2px;
+  border-radius: 5px;
+}
