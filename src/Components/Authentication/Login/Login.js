@@ -3,6 +3,7 @@ import "../Login/Login.css";
 
 class Login extends Component {
   constructor(props) {
+    super();
     this.state = {};
   }
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .resultCardImage{
 	width: 200px;
@@ -25,3 +26,26 @@
 .sort-by-container {
 	order: 2;
 }
+=======
+.tableStyle {
+  height: 300px;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bigHeadingStyle {
+  color: #7a653f;
+  font-weight: bold;
+  font-size: 350%;
+}
+.test-button {
+  border: red solid 2px;
+  height: 100px;
+  width: 200px;
+}
+.course-browser-container {
+  height: 100%;
+  width: 100%;
+  border: blue solid 2px;
+}
+>>>>>>> 4c237571942f24dfdd7965c0c6d0cee28f396f2a
