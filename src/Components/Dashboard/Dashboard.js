@@ -14,18 +14,18 @@ const Dashboard = (props) => {
 		<li> Admin is leaving this job. Apply now!</li>
 	</div>;
 
-	const assignmentList = 
-	<div className = "sidebar-list">
-		<h3> Assignment </h3>
-		<li> Assignment 1</li>
-		<li> Assignment 2</li>
-	</div>;	
+	// const assignmentList = 
+	// <div className = "sidebar-list">
+	// 	<h3> Assignment </h3>
+	// 	<li> Assignment 1</li>
+	// 	<li> Assignment 2</li>
+	// </div>;	
 	
 	return(
 		<div className = "dashboard-container">
 			<div class = "sidenav-container">
 				{announcementList}
-				{assignmentList}
+				{/* {assignmentList} */}
 			</div>
 			<div className = "main-container container">
 				<div className = "row">
@@ -92,13 +92,13 @@ const Dashboard = (props) => {
 
 				</div>
 				
-				<div className = "row">
+				{/* <div className = "row">
 					<div className = "col">
 						<h2 className = 'heading text-left'> Recommended courses </h2>
 					</div>
-				</div>
+				</div> */}
 
-				<div className = "row">
+				{/* <div className = "row">
 
 					<div className = "col">
 						<div className = "card card-addon">
@@ -110,9 +110,9 @@ const Dashboard = (props) => {
 						    <a class="btn btn-primary">Enroll Course!</a>
 						  </div>
 						</div>
-					</div>
+					</div> */}
 
-				</div>
+				{/*</div> */}
 				
 				
 			</div>
