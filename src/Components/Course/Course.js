@@ -1,28 +1,24 @@
-import React from 'react';
+import React from "react";
+import "../Course/Course.css";
+import CourseContent from "../CourseContent/CourseContent";
+import Discussions from "../Discussions/Discussions";
+import Lessons from "../Lessons/Lessons";
 
-const Course = (props) => {
-
-	const tableStyle = {
-		height : '300px',
-		marginTop:  '10%',
-  		marginLeft: 'auto',
-  		marginRight: 'auto'
-	}
-	const bigHeadingStyle = {
-		color : '#7a653f',
-		fontWeight: 'bold',
-		fontSize : '350%'
-	}
-	const {params} = props.match;
-	return(
-		<table style = {tableStyle}>
-		  <tbody>
-		    <tr>
-		      <td className="align-middle text-center" style = {bigHeadingStyle}>{'Course-'.concat(params.id).concat(" Page")}</td>
-		    </tr>
-		  </tbody>
-		</table>
-	);
-}
+const Course = props => {
+  const { params } = props.match;
+  return (
+    <div className="courseContainer">
+      <div className="courseContent">
+        <CourseContent />
+      </div>
+      <div className="lessonsContainer">
+        <Lessons />
+      </div>
+      <div className="discussionContent">
+        <Discussions />
+      </div>
+    </div>
+  );
+};
 
 export default Course;
