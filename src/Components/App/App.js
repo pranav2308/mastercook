@@ -1,4 +1,7 @@
 import React from 'react';
+
+import emptyUser from './helperObjects';
+import setUser from './helperMethods';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import firebase from '../../Firebase/firebase';
 import 'typeface-roboto';
@@ -19,7 +22,10 @@ class App extends React.Component{
 	
 	constructor(props){
 		super(props);
-		this.state={};
+		this.state={
+			user : emptyUser
+		};
+		this.setUser = setUser.bind(this);
 	}
 
 	componentWillMount() {
@@ -32,13 +38,15 @@ class App extends React.Component{
 
     }
 
+
+
 	render(){
 		return (
 			<Router>
 				<Navbar/>
 				<Switch>
 					
-					<Route exact path = "/" component = {Homepage}/>
+					<Route exact path = "/" render = { (props) => <Homepage {...props} setUser = {this.setUser}/>}/>
 					<Route exact path = "/login" component = {Login}/>
 					<Route exact path = "/register" component = {Register}/>
 					<Route exact path = "/dashboard/" component = {Dashboard}/>
