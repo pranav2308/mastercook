@@ -1,22 +1,27 @@
-.resultCollection{
-	margin-left: 20%;
-	margin-top: 30%;
-}
 
 .resultCardImage{
 	width: 200px;
 	height: 200px;
 }
 .resultCard{
-	width : 50%;
-	height: 200px;
+	width : 90%;
+	height: 50%;
 	border: solid 2px red;
 }
 
-.embed{
-	width: 100%;
+.card {
+	background-color: green;
 }
-
 .optionContainer{
+	margin: auto;
+	border: solid 2px black;
 	display: flex;
+	padding-top: 100px;
+	justify-content: flex-start;
+}
+.categories-container {
+	order: 1;
+}
+.sort-by-container {
+	order: 2;
 }
