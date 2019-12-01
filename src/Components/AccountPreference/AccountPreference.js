@@ -12,6 +12,7 @@ class AccountPreference extends Component {
 			firstName: '',
 			lastName: '',
 			email: '',
+			profile: ''
 		}
 
 		this.firstNameOnChange = this.firstNameOnChange.bind(this);
@@ -22,7 +23,7 @@ class AccountPreference extends Component {
 	componentDidMount(){
 		console.log(this.props.user);
 		this.setState({firstName: this.props.user.FirstName, lastName: this.props.user.LastName,
-						email: this.props.user.Email});
+						email: this.props.user.Email, profile: this.props.user.profilePic});
 	}
 
 	firstNameOnChange(event){
@@ -36,6 +37,7 @@ class AccountPreference extends Component {
 	}
 
 	render() {
+		console.log(this.state.email);
 		return (
 			<div className = "container">
 
@@ -43,7 +45,7 @@ class AccountPreference extends Component {
 
 
 			<div class="card card-addon">
-			<img src="http://images6.fanpop.com/image/photos/40500000/-Hannah-Baker-13-reasons-why-netflix-series-40517480-250-250.png" class="card-img-top" alt="..."/>
+			<img src={this.state.profile} class="card-img-top" alt="..."/>
 			<div class="card-body">
 				<h5 class="card-title">Profile Picture</h5>
 				<p class="card-text">Change Profile Picture</p>
