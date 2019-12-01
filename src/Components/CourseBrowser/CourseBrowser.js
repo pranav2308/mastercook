@@ -48,7 +48,8 @@ class CourseBrowser extends React.Component {
   }
   componentDidUpdate() {
     if (this.state["courseNames"].length > 0) {
-      let searchResults = this.searchForMatches();
+	  let searchResults = this.searchForMatches();
+	  // search results now contain the filtered courses from the DB
       console.log(searchResults);
     }
   }
