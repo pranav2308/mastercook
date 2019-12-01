@@ -1,5 +1,6 @@
 import React from 'react';
 import './Dashboard.css';
+import firebase from "../../Firebase/firebase";
 import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement } from './helperMethods';
 
 
@@ -24,9 +25,27 @@ class Dashboard extends React.Component{
 		}
 		this.setAnnouncementObj();
 	}
+
+	onClickEnrollCourse = (courseID) => {
+
+		let {enrolledCourses} = this.props.user;
+		const userID = firebase.auth.currentUser.uid;
+		
+		enrolledCourses.push({courseID : courseID, progress : 0});
+		
+		new Promise((resolve, reject) => {
+			resolve(firebase.database.ref('users/' + userID).update({EnrolledCourses : enrolledCourses}));	
+		})
+		.then(() => {
+			
+			this.setEnrolledCourseList(enrolledCourses);
+		})
+		.catch(error => console.log(error));
+		
+	}
 	render(){		
 
-		const chickenImgUrl = "https://www.foodrepublic.com/wp-content/uploads/2014/06/cachacachicken_0.jpg";
+		const pizzaImgUrl = "http://www.spoonforkbacon.com/wordpress/wp-content/uploads/2017/02/fall_pizza_recipe-800x1066.jpg";
 
 		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList);
 
@@ -71,12 +90,12 @@ class Dashboard extends React.Component{
 
 						<div className = "col">
 							<div className = "card card-addon">
-							  <img src= {chickenImgUrl} class="card-img-top" alt="Tofu dishes"/>
+							  <img src= {pizzaImgUrl} class="card-img-top" alt="pizza"/>
 							  <div class="card-body">
-							    <h5 class="card-title">Chicken recipes</h5>
-							    <p class="card-text">Cut chicken and eat it!</p>
-							     <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Kim jong-un</p>
-							    <a class="btn btn-primary">Enroll Course!</a>
+							    <h5 class="card-title">MC004: Pizza 101</h5>
+							    <p class="card-text">Cook homemade delicious pizza. It's easy, fast and healthy!</p>
+							     <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Gordon Ramsey</p>
+							    <a class="btn btn-primary" onClick = {() => this.onClickEnrollCourse(4)}>Enroll Course!</a>
 							  </div>
 							</div>
 						</div>

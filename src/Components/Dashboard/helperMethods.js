@@ -22,8 +22,9 @@ function getEnrolledCoursesRenderElement(enrolledCourseList) {
   if (enrolledCourseList.length !== 0) {
     const courseList = enrolledCourseList.map(enrolledCourseObj => {
       const {
+      	ID,
         ImageUrl,
-        DescriptionText,
+        Description,
         InstructorName,
         Name,
         progress
@@ -38,8 +39,8 @@ function getEnrolledCoursesRenderElement(enrolledCourseList) {
               height="200"
             />
             <div class="card-body">
-              <h5 class="card-title">{Name}</h5>
-              <p class="card-text">{DescriptionText}</p>
+              <h5 class="card-title">{`MC00${ID}: ${Name}`}</h5>
+              <p class="card-text">{Description}</p>
               <p class="card-text">
                 <span className="font-weight-bold">Intructor:</span>{" "}
                 {InstructorName}
