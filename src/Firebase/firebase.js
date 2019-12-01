@@ -3,6 +3,7 @@
 const firebase = require('firebase/app');
 require('firebase/auth');
 require("firebase/firestore");
+require('firebase/database');
 
   // Firebase configuration
   const firebaseConfig = {
@@ -20,7 +21,9 @@ require("firebase/firestore");
   let db = firebase.firestore();
   db.settings({timestampsInSnapshots: true})
   let auth = firebase.auth();
+  const database = firebase.database()
   export default {
     firestore: db,
-    auth: auth
+    auth: auth,
+    database: database
   };

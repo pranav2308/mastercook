@@ -51,8 +51,26 @@ class Homepage extends Component{
     firebase.auth.signInWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
     .then(() => {
       this.setState({signedIn: true, userEmail: '', userPassword: '', error: false, message: '', register: false});
-      firebase.firestore.collection("Users").onSnapshot((snapshot) => {
-        console.log(snapshot);
+      const userID = firebase.auth.currentUser.uid;
+      firebase.database.ref('users/' + userID).once('value').then((snapshot) => {
+        const { FirstName, LastName, Language, FontSize, Email, AccountType, ProfilePic, ShareProgress, Messages, EnrolledCourses } = snapshot.val();
+        let userObj = {
+          firstName : FirstName,
+          lastName : LastName,
+          accountType : AccountType,
+          email : Email,
+          fontSize : FontSize,
+          profilePic : ProfilePic,
+          shareProgress : ShareProgress,
+          language : Language
+        }
+        if(Messages){
+          userObj.messages = Messages;
+        }
+        if(EnrolledCourses){
+          userObj.enrolledCourses = EnrolledCourses;
+        }
+        this.props.setUser(userObj);
       })
       alert("You Are Signed In!");
     })
@@ -139,48 +157,38 @@ class Homepage extends Component{
     }
 
     firebase.auth.createUserWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
-      .then(() => {
-            this.setState({signedIn: true, error: false, message: '', register: false});
-            return firebase.firestore.collection("UserID").doc('UniqueID').get().then((snapshot) => {
-            // console.log("this is the data: ", snapshot.data());
-            const lastID = snapshot.data().lastID;
-            // console.log('lastID is: ', lastID);
-            return lastID + 1;
-          })
+      .then((user) => {
+            const { userFirstName, userLastName, accountType, userEmail } = this.state;
+            firebase.database.ref('users/' + user.user.uid).set({
+              FirstName: userFirstName,
+              LastName: userLastName,
+              AccountType: accountType,
+              Email: userEmail,
+              EnrolledCourses: [],
+              FontSize: '12',
+              ProfilePic: '',
+              Language: 'Eng',
+              ShareProgress: false,
+              Messages: []
+            })
+            .then(() => {
+              const userObj = {
+                firstName: userFirstName,
+                lastName: userLastName,
+                accountType: accountType,
+                email: userEmail,
+                enrolledCourses: [],
+                fontSize: '12',
+                profilePic: '',
+                language: 'Eng',
+                shareProgress: false,
+                messages: []
+              }
+              this.props.setUser(userObj);
+              this.setState({signedIn: true, error: false, message: '', register: false});
+            });
         })
-      .then((userID) => {
-        const { userFirstName, userLastName, accountType, userEmail } = this.state;
-        firebase.firestore.collection("UserID").doc("UniqueID").set({
-          lastID : userID
-        })
-        firebase.firestore.collection("Users").doc(userID.toString()).set({
-          FirstName: this.state.userFirstName,
-          LastName: this.state.userLastName,
-          AccountType: this.state.accountType,
-          Email: this.state.userEmail,
-          EnrolledCourses: [],
-          FontSize: '12',
-          ProfilePic: '',
-          Language: 'Eng',
-          ShareProgress: false,
-          Messages: []
-        })
-        .then(() => {
-          const userObj = {
-            firstName: userFirstName,
-            lastName: userLastName,
-            accountType: accountType,
-            email: userEmail,
-            enrolledCourses: [],
-            fontSize: '12',
-            profilePic: '',
-            language: 'Eng',
-            shareProgress: false,
-            messages: []
-          }
-          this.props.setUser(userObj);
-        })
-      })
+
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
