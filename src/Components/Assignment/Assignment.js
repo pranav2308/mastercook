@@ -63,8 +63,8 @@ class Assignment extends React.Component{
                 </div>
 
                 <div class = "buttonContainer">
-                    <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft :'30%', marginRight:'5%'}}>Submit</button>
-                    <button type="button" class="btn btn-secondary btn-lg " style = {{marginRight: '30%', marginLeft:'5%'}}>Cancel</button>
+                    <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft :'5%', marginRight:'1%'}}>Submit</button>
+                    <button type="button" class="btn btn-secondary btn-lg " style = {{marginRight: '5%', marginLeft:'1%'}}>Cancel</button>
                 </div>
 
                 <div class = "buttonUpload">
