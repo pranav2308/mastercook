@@ -11,22 +11,29 @@ class AccountPreference extends Component {
 		this.state = {
 			firstName: '',
 			lastName: '',
-			username: '',
 			email: '',
 		}
+
+		this.firstNameOnChange = this.firstNameOnChange.bind(this);
+		this.lastNameOnChange = this.lastNameOnChange.bind(this);
+		this.emailOnChange = this.emailOnChange.bind(this);
 	}
 
 	componentDidMount(){
-		//firebase.database.ref("users/" + userID).once('value').then((s) => {
-			//console.log(s);
-			//this.setState({});
-		//})
 		console.log(this.props.user);
+		this.setState({firstName: this.props.user.FirstName, lastName: this.props.user.LastName,
+						email: this.props.user.Email});
 	}
 
-	onChangeFirstName(){}
-	onChangeFirstName(){}
-	onChangeFirstName(){}
+	firstNameOnChange(event){
+		this.setState({firstName: event.target.value});
+	}
+	lastNameOnChange(event){
+		this.setState({lastName: event.target.value});
+	}
+	emailOnChange(event){
+		this.setState({email: event.target.value});
+	}
 
 	render() {
 		return (
