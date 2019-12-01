@@ -1,34 +1,34 @@
 import React from "react";
+import firebase from "../../Firebase/firebase";
 import "../Course/Course.css";
 import CourseContent from "../CourseContent/CourseContent";
 import Discussions from "../Discussions/Discussions";
 import Lessons from "../Lessons/Lessons";
-import { any } from "prop-types";
-import firebase from "../../Firebase/firebase";
 
 let courseRef = firebase.firestore.collection("Courses");
 
 class Course extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       courses: [],
       courseLessons: {
-        lessons:[],
+        lessons: [],
         courseName: ""
-      }
-    }
+      },
+      currentCourse: {}
+    };
     this.componentDidMount = this.componentDidMount.bind(this);
-
   }
 
-  componentDidMount () {
+  componentDidMount() {
     let newCourse = [];
     let newCourseLessons = [];
-    
+    let newCurrent = {};
+    const courseID = this.props.match.params["id"];
     courseRef.onSnapshot(async s => {
       await s.forEach(doc => {
-        newCourse.push({
+        let courseObj = {
           id: doc.id,
           name: doc.data()["Name"],
           announcements: doc.data()["Announcements"],
@@ -41,29 +41,37 @@ class Course extends React.Component {
           quizList: doc.data()["QuizList"],
           studentList: doc.data()["StudentList"],
           syllabus: doc.data()["Syllabus"]
-        });
+        };
+        if (typeof courseID !== "undefined") {
+          if (doc.id === courseID) {
+            newCurrent = courseObj;
+          }
+        }
+        newCourse.push(courseObj);
         newCourseLessons.push({
           lessons: doc.data()["Lessons"],
           name: doc.data()["Name"],
-          id: doc.id,
-        })
+          id: doc.id
+        });
       });
       this.setState({
         courses: newCourse,
-        courseLessons: newCourseLessons
+        courseLessons: newCourseLessons,
+        currentCourse: newCurrent
       });
-      console.log(this.state);
-    })
+    });
   }
 
-  render (){
+  componentDidUpdate() {}
+
+  render() {
     return (
       <div className="courseContainer">
         <div className="courseContent">
-          <CourseContent />
+          <CourseContent currentCourse={this.state.currentCourse} />
         </div>
         <div className="lessonsContainer">
-          <Lessons />
+          <Lessons currentCourse={this.state.currentCourse} />
         </div>
         <div className="discussionContent">
           <Discussions />
@@ -72,6 +80,5 @@ class Course extends React.Component {
     );
   }
 }
-
 
 export default Course;
