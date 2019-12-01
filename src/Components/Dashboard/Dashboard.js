@@ -1,33 +1,39 @@
 import React from 'react';
 import './Dashboard.css';
+import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement } from './helperMethods';
 
 
 class Dashboard extends React.Component{
 
 	constructor(props){
 		super(props);
+		this.state = {
+			enrolledCourseList : [],
+			announcementObj : null
+		}
+		this.setEnrolledCourseList = setEnrolledCourseList.bind(this);
+		this.setAnnouncementObj = setAnnouncementObj.bind(this);
+		
 	}
 	
-	
-	render(){
+	componentDidMount(){
+		
+		const {enrolledCourses} = this.props.user;
+		if(enrolledCourses){
+			this.setEnrolledCourseList(enrolledCourses);
+		}
+		this.setAnnouncementObj();
+	}
+	render(){		
 
-		const tofuImgUrl = `http://media.beam.usnews.com/a9/14/c75d491f4979a756e6108846c2e5/161104-tofucubes-stock.jpg`;
-		const chickenImgUrl = `https://www.foodrepublic.com/wp-content/uploads/2014/06/cachacachicken_0.jpg`;
+		const chickenImgUrl = "https://www.foodrepublic.com/wp-content/uploads/2014/06/cachacachicken_0.jpg";
 
-		const announcementList = 
-		<div className = "sidebar-list">
-			<h3> Announcement </h3>
-			<li> website is going down tomorrow!</li>
-			<li> Admin is leaving this job. Apply now!</li>
-		</div>;
+		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList);
 
-		const assignmentList = 
-		<div className = "sidebar-list">
-			<h3> Assignment </h3>
-			<li> Assignment 1</li>
-			<li> Assignment 2</li>
-		</div>;
+		const announcementList = getAnnouncementRenderElement(this.state.announcementObj);
 
+		const assignmentList = getAssignmentRenderElement(this.state.enrolledCourseList);
+		
 		const{ firstName, accountType } = this.props.user;	
 		return(
 			<div className = "dashboard-container">
@@ -52,52 +58,7 @@ class Dashboard extends React.Component{
 						</div>
 					</div>
 					<div className = "row">
-						
-						<div className = "col">
-							<div className = "card card-addon">
-							  <img src= {tofuImgUrl} class="card-img-top" alt="Tofu dishes"/>
-							  <div class="card-body">
-							    <h5 class="card-title">Tofu recipes</h5>
-							    <p class="card-text">Learn delicious tofu recipes at low cost. It's fast, healthy, and inexpensive.</p>
-							    <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Vladimir Putin</p>
-							    <a class="btn btn-primary">Continue course</a>
-							  </div>
-							  <div class="progress">
-							  	<div className="progress-bar bg-success progress-bar-addon" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-							  </div>
-							</div>
-						</div>
-
-						<div className = "col">
-							<div className = "card card-addon">
-							  <img src= {tofuImgUrl} class="card-img-top" alt="Tofu dishes"/>
-							  <div class="card-body">
-							    <h5 class="card-title">Tofu recipes</h5>
-							    <p class="card-text">Learn delicious tofu recipes at low cost. It's fast, healthy, and inexpensive.</p>
-							     <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Vladimir Putin</p>
-							    <a class="btn btn-primary">Continue course</a>
-							  </div>
-							  <div class="progress">
-							  	<div className="progress-bar bg-success progress-bar-addon" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-							  </div>
-							</div>
-						</div>
-
-						<div className = "col">
-							<div className = "card card-addon">
-							  <img src= {tofuImgUrl} class="card-img-top" alt="Tofu dishes"/>
-							  <div class="card-body">
-							    <h5 class="card-title">Tofu recipes</h5>
-							    <p class="card-text">Learn delicious tofu recipes at low cost. It's fast, healthy, and inexpensive.</p>
-							     <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Vladimir Putin</p>
-							    <a class="btn btn-primary">Continue course</a>
-							  </div>
-							  <div class="progress">
-							  	<div className="progress-bar bg-success progress-bar-addon" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-							  </div>
-							</div>
-						</div>
-
+						{EnrolledCoursesRenderElement}
 					</div>
 					
 					<div className = "row">
