@@ -38,9 +38,24 @@ class Assignment extends React.Component{
 
 
     onSubmit = () => {
-        const assignmentID = this.props.match.params;
+        const assignmentID = this.props.match.params.id;
+        // console.log(assignmentID)
         firebase.firestore.collection('QuizContent').doc(assignmentID.toString()).onSnapshot(snapshot => {
-            console.log(snapshot.data());
+            const correctAnswers = snapshot.data().CorrectAnswers;
+            const points = snapshot.data().Points;
+            const userPoints = VerificationEngine(this.state.questionTracker, correctAnswers, points);
+            const userID = firebase.auth.currentUser.uid;
+
+            let { pastAssignments } = this.props.user;
+            let newAssignments;
+            if(pastAssignments){
+                newAssignments = pastAssignments.push({assignmentID: assignmentID, points : userPoints});
+            }
+            else{
+                newAssignments = [{assignmentID: assignmentID, points : userPoints}]
+            }
+
+            firebase.database.ref('users/' + userID).update({PastAssignments : newAssignments});
         })
     }
     
@@ -68,12 +83,18 @@ class Assignment extends React.Component{
                 </div>
 
                 <div className="progress quiz-progress-bar">
-                    <div className="progress-bar bg-success" role="progressbar" style = {{width : quizProgress}} aria-valuenow={quizProgress} aria-valuemin="0" aria-valuemax="100">{`${quizProgress}%`}</div>
+                    <div className="progress-bar bg-success" role="progressbar" style={{ width: quizProgress + "%" }} aria-valuenow={quizProgress} aria-valuemin="0" aria-valuemax="100">{`${quizProgress}%`}</div>
                 </div>
 
-                <div class = "buttonContainer">
-                    <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft :'5%', marginRight:'1%'}}>Submit</button>
-                    <button type="button" class="btn btn-secondary btn-lg " style = {{marginRight: '5%', marginLeft:'1%'}}>Cancel</button>
+                <div class = "buttonContainer container">
+                    <div className = "row align-items-center">
+                        <div className = "col">
+                            <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft : '15%'}} onClick = {this.onSubmit}>Submit</button>
+                        </div>
+                        <div className = "col">
+                            <button type="button" class="btn btn-secondary btn-lg" style = {{marginLeft : '15%'}}>Cancel</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class = "buttonUpload">
