@@ -1,0 +1,52 @@
+.tableStyle {
+  height: 300px;
+  margin-top: 10%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.lessonsContainer {
+  /* border: solid red 2px; */
+  padding: 15px;
+  margin-top: 3px;
+  height: 65vh;
+  width: 25%;
+  position: absolute;
+  right: 0;
+  overflow-y: scroll;
+}
+.courseContainer {
+  /* border:solid blue 2px; */
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+.courseContent {
+  /* border: solid green 2px; */
+  height: 65vh;
+  width: 75%;
+  padding: 10px;
+  margin-top: 10px;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.discussionContent {
+  /* border: solid salmon 2px; */
+  height: 35vh;
+  width: 100%;
+  padding: 15px;
+  position: absolute;
+  bottom: 0;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bigHeadingStyle {
+  color: #7a653f;
+  font-weight: bold;
+  font-size: 350%;
+}
