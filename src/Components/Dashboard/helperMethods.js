@@ -21,6 +21,7 @@ function getEnrolledCoursesRenderElement(enrolledCourseList){
 	if(enrolledCourseList.length !== 0){
 		const courseList = enrolledCourseList.map(enrolledCourseObj => {
 			const { ImageUrl, DescriptionText, InstructorName, Name, progress } = enrolledCourseObj;
+			console.log('Description Text: ', DescriptionText);
 			return <div className = "col">
 						<div className = "card card-addon">
 						  <img src= {ImageUrl} class="card-img-top" alt="Tofu dishes" height = "200"/>
