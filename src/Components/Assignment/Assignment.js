@@ -1,5 +1,7 @@
 import React from 'react';
 import './Assignment.css';
+import VerificationEngine from '../VerificationEngine/VerificationEngine';
+import firebase from "../../Firebase/firebase";
 import { updateQuestionTracker, onChangeTextAnswers, onChangeSelectAnswers, getSideNavList, getQuizProgress } from './helperMethods';
 import QuizHeading from './QuizHeading';
 import QuestionList from './QuestionList';
@@ -34,6 +36,13 @@ class Assignment extends React.Component{
         this.setState({ questionTracker : questionTracker });
     }
 
+
+    onSubmit = () => {
+        const assignmentID = this.props.match.params;
+        firebase.firestore.collection('QuizContent').doc(assignmentID.toString()).onSnapshot(snapshot => {
+            console.log(snapshot.data());
+        })
+    }
     
     render(){
 
