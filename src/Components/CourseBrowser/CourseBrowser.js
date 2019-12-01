@@ -6,8 +6,6 @@ import CourseItem from './CourseItem';
 import CourseList from './CourseList';
 import SearchEngine from '../SearchEngine/SearchEngine';
 import { any } from "prop-types";
-import React from "react";
-import firebase from "../../Firebase/firebase";
 
 let courseRef = firebase.firestore.collection("Courses");
 
@@ -97,6 +95,6 @@ class CourseBrowser extends React.Component {
       </table>
     );
   }
-
+}
 
 export default CourseBrowser;
