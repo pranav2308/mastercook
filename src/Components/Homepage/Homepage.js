@@ -50,7 +50,7 @@ class Homepage extends Component{
     
     firebase.auth.signInWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
     .then(() => {
-      this.setState({signedIn: true, userEmail: '', userPassword: '', error: false, message: '', register: false});
+      
       const userID = firebase.auth.currentUser.uid;
       firebase.database.ref('users/' + userID).once('value').then((snapshot) => {
         const { FirstName, LastName, Language, FontSize, Email, AccountType, ProfilePic, ShareProgress, Messages, EnrolledCourses } = snapshot.val();
@@ -71,6 +71,7 @@ class Homepage extends Component{
           userObj.enrolledCourses = EnrolledCourses;
         }
         this.props.setUser(userObj);
+        this.setState({signedIn: true, userEmail: '', userPassword: '', error: false, message: '', register: false});
       })
       alert("You Are Signed In!");
     })
@@ -164,7 +165,7 @@ class Homepage extends Component{
               LastName: userLastName,
               AccountType: accountType,
               Email: userEmail,
-              EnrolledCourses: [],
+              EnrolledCourses: [{courseID : 1, progress : 10}, {courseID : 2, progress : 49}, {courseID : 3, progress : 95}],
               FontSize: '12',
               ProfilePic: '',
               Language: 'Eng',
