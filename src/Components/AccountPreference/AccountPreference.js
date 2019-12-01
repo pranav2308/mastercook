@@ -17,12 +17,11 @@ class AccountPreference extends Component {
 	}
 
 	componentDidMount(){
-		console.log(firebase.auth.currentUser);
-		let userID = firebase.auth.currentUser.uid;
-		firebase.database.ref("users/" + userID).once('value').then((s) => {
-			console.log(s);
+		//firebase.database.ref("users/" + userID).once('value').then((s) => {
+			//console.log(s);
 			//this.setState({});
-		})
+		//})
+		console.log(this.props.user);
 	}
 
 	onChangeFirstName(){}
