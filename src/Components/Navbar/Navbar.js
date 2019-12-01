@@ -45,6 +45,11 @@ const Navbar = () => {
               Messages <span className="sr-only">(current)</span>
             </NavLink>
           </li>
+          <li className="nav-item active">
+            <NavLink className="nav-link" to="/settings">
+              Settings <span className="sr-only">(current)</span>
+            </NavLink>
+          </li>
         </ul>
         <SearchEngine />
       </div>

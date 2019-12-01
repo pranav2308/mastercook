@@ -1,24 +1,26 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import firebase from "../../Firebase/firebase";
-import "../Homepage/Homepage.css";
-import { RegisterDiv, RegularDiv } from "./DivHelper";
+import React, {Component} from 'react';
+import firebase from '../../Firebase/firebase';
+import {Redirect} from "react-router-dom";
+import '../Homepage/Homepage.css';
+import {RegularDiv, RegisterDiv} from './DivHelper';
 
-class Homepage extends Component {
-  constructor(props) {
+class Homepage extends Component{
+
+  constructor(props){
     super(props);
 
     this.state = {
-      signedIn: false,
+      signedIn: false, 
       register: false,
-      error: false,
-      message: "",
-      userEmail: "",
-      userPassword: "",
-      userFirstName: "",
-      userLastName: "",
-      username: "",
-      userConfirmedPassword: ""
+      error: false, 
+      message: '', 
+      userEmail: '' , 
+      userPassword: '', 
+      userFirstName: '',
+      userLastName: '',
+      username: '',
+      userConfirmedPassword: '',
+      accountType: 'student',
     };
 
     this.onLogin = this.onLogin.bind(this);
@@ -35,178 +37,202 @@ class Homepage extends Component {
   }
 
   emailOnChange(event) {
-    this.setState({ userEmail: event.target.value });
+    this.setState({userEmail: event.target.value});
     console.log(this.state.userEmail);
   }
 
   passwordOnChange(event) {
-    this.setState({ userPassword: event.target.value });
+    this.setState({userPassword: event.target.value});
     console.log(this.state.userPassword);
   }
 
-  onLogin = event => {
-    firebase.auth
-      .signInWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
-      .then(() => {
-        this.setState({
-          signedIn: true,
-          userEmail: "",
-          userPassword: "",
-          error: false,
-          message: "",
-          register: false
-        });
-        alert("You Are Signed In!");
+  onLogin = (event) => {
+    
+    firebase.auth.signInWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
+    .then(() => {
+      
+      const userID = firebase.auth.currentUser.uid;
+      firebase.database.ref('users/' + userID).once('value').then((snapshot) => {
+        const { FirstName, LastName, Language, FontSize, Email, AccountType, ProfilePic, ShareProgress, Messages, EnrolledCourses } = snapshot.val();
+        let userObj = {
+          firstName : FirstName,
+          lastName : LastName,
+          accountType : AccountType,
+          email : Email,
+          fontSize : FontSize,
+          profilePic : ProfilePic,
+          shareProgress : ShareProgress,
+          language : Language
+        }
+        if(Messages){
+          userObj.messages = Messages;
+        }
+        if(EnrolledCourses){
+          userObj.enrolledCourses = EnrolledCourses;
+        }
+        this.props.setUser(userObj);
+        this.setState({signedIn: true, userEmail: '', userPassword: '', error: false, message: '', register: false});
       })
-      .catch(error => {
-        let errorCode = error.code;
-        //let errorMessage = error.message;
+      alert("You Are Signed In!");
+    })
+    .catch((error) => {
+      let errorCode = error.code;
+      let errorMessage = error.message;
 
-        console.log(errorCode);
+      console.log(errorCode);
+      
+      if (errorCode === 'auth/wrong-password'){
+        alert('Wrong Password.');
+      }
+      if (errorCode === 'auth/invalid-email'){
+        alert('Invalid Email.');
+      }
+      if (errorCode === 'auth/user-not-found'){
+        alert('User Not Found.');
+      }
+      if (errorCode === 'auth/user-disabled'){
+        alert('User-disabled.');
+      }
 
-        if (errorCode === "auth/wrong-password") {
-          alert("Wrong Password.");
-        }
-        if (errorCode === "auth/invalid-email") {
-          alert("Invalid Email.");
-        }
-        if (errorCode === "auth/user-not-found") {
-          alert("User Not Found.");
-        }
-        if (errorCode === "auth/user-disabled") {
-          alert("User-disabled.");
-        }
-      });
-  };
+    }); 
+  }
 
   //Processes user email and password through db on submit
   //Creates new user record if user credentials not found in db
-  onSignup = event => {
-    if (!this.state.register) {
-      this.setState({
-        signedIn: false,
-        error: false,
-        message: "",
-        register: true
-      });
+  onSignup = (event) => {
+    if (!this.state.register){
+      this.setState({signedIn: false, error: false, message: '', register: true});
     }
-  };
+    
+  }
 
   userFirstNameOnChange(event) {
-    this.setState({ userFirstName: event.target.value });
+    this.setState({userFirstName: event.target.value});
   }
 
   userLastNameOnChange(event) {
-    this.setState({ userLastName: event.target.value });
+    this.setState({userLastName: event.target.value});
   }
 
   userEmailOnChange(event) {
-    this.setState({ userEmail: event.target.value });
+    this.setState({userEmail: event.target.value});
   }
 
   usernameOnChange(event) {
-    this.setState({ username: event.target.value });
+    this.setState({username: event.target.value});
   }
 
   userPasswordOnChange(event) {
-    this.setState({ userPassword: event.target.value });
+    this.setState({userPassword: event.target.value});
   }
 
   confirmedPasswordOnChange(event) {
-    this.setState({ userConfirmedPassword: event.target.value });
+    this.setState({userConfirmedPassword: event.target.value});
   }
 
-  handleRegister(event) {
-    if (this.state.userFirstName === "") {
-      alert("First Name Cannot Be Blank.");
+
+  handleRegister(event){
+
+    if (this.state.userFirstName == ''){
+      alert('First Name Cannot Be Blank.');
     }
-    if (this.state.userLastName === "") {
-      alert("Last Name Cannot Be Blank.");
+    else if (this.state.userLastName == ''){
+      alert('Last Name Cannot Be Blank.');
     }
-    if (this.state.userEmail === "") {
-      alert("Email Cannot Be Blank.");
+    else if (this.state.userEmail == ''){
+      alert('Email Cannot Be Blank.');
     }
-    if (this.state.username === "") {
-      alert("Username Cannot Be Blank.");
+    else if (this.state.username == ''){
+      alert('Username Cannot Be Blank.');
     }
-    if (this.state.userPassword === "") {
-      alert("Password Cannot Be Blank.");
+    else if (this.state.userPassword == ''){
+      alert('Password Cannot Be Blank.');
     }
-    if (this.state.userPassword.length < 8) {
-      alert("Password Must Be More Than 8 Characters.");
+    else if (this.state.userPassword.length < 8){
+      alert('Password Must Be More Than 8 Characters.')
     }
-    if (this.state.userConfirmedPassword === "") {
-      alert("Please Confirm Password.");
+    else if (this.state.userConfirmedPassword == ''){
+      alert('Please Confirm Password.');
     }
-    if (this.state.userPassword !== this.state.userConfirmedPassword) {
-      alert("Password and Confirmation Do Not Match.");
+    else if (this.state.userPassword != this.state.userConfirmedPassword) {
+      alert('Password and Confirmation Do Not Match.');
     }
 
-    firebase.auth
-      .createUserWithEmailAndPassword(
-        this.state.userEmail,
-        this.state.userPassword
-      )
-      .then(() => {
-        this.setState({
-          signedIn: true,
-          error: false,
-          message: "",
-          register: false
-        });
-        firebase.firestore
-          .collection("Users")
-          .doc(this.state.username)
-          .set({
-            FirstName: this.state.userFirstName,
-            LastName: this.state.userLastName,
-            Email: this.state.userEmail
-          })
-          .then(() => {
-            console.log("account created");
-          });
-      })
-      .catch(error => {
+    firebase.auth.createUserWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
+      .then((user) => {
+            const { userFirstName, userLastName, accountType, userEmail } = this.state;
+            firebase.database.ref('users/' + user.user.uid).set({
+              FirstName: userFirstName,
+              LastName: userLastName,
+              AccountType: accountType,
+              Email: userEmail,
+              EnrolledCourses: [{courseID : 1, progress : 10}, {courseID : 2, progress : 49}, {courseID : 3, progress : 95}],
+              FontSize: '12',
+              ProfilePic: '',
+              Language: 'Eng',
+              ShareProgress: false,
+              Messages: []
+            })
+            .then(() => {
+              const userObj = {
+                firstName: userFirstName,
+                lastName: userLastName,
+                accountType: accountType,
+                email: userEmail,
+                enrolledCourses: [],
+                fontSize: '12',
+                profilePic: '',
+                language: 'Eng',
+                shareProgress: false,
+                messages: []
+              }
+              this.props.setUser(userObj);
+              this.setState({signedIn: true, error: false, message: '', register: false});
+            });
+        })
+      .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
 
-        this.setState({ error: true, message: errorMessage });
+        this.setState({error: true, message: errorMessage});
 
-        if (errorCode === "auth/email-already-in-use") {
-          alert("Email Already In Use.");
+        if (errorCode === 'auth/email-already-in-use'){
+          alert('Email Already In Use.');
         }
-        if (errorCode === "auth/invalid-email") {
-          alert("Invalid Email.");
+        if (errorCode === 'auth/invalid-email'){
+          alert('Invalid Email.');
         }
-        if (errorCode === "auth/weak-password") {
-          alert("Weak Password.");
+        if (errorCode === 'auth/weak-password'){
+          alert('Weak Password.');
         }
       });
   }
 
-  render() {
+  render(){
+
     if (this.state.signedIn) {
-      return <Redirect to={"/dashboard"} />;
-    }
+            return (<Redirect to={"/dashboard"}/>);
+        }
 
     if (this.state.register) {
       return (
-        <div className="homepage-container">
-          <div className="bg-image">
-            <RegisterDiv
-              handleRegister={this.handleRegister}
-              userFirstNameOnChange={this.userFirstNameOnChange}
-              userLastNameOnChange={this.userLastNameOnChange}
-              userEmailOnChange={this.userEmailOnChange}
-              usernameOnChange={this.usernameOnChange}
-              userPasswordOnChange={this.userPasswordOnChange}
-              confirmedPasswordOnChange={this.confirmedPasswordOnChange}
-            />
+        <div class = "homepage-container">
+          <div class="bg-image">
+          <RegisterDiv 
+            handleRegister = {this.handleRegister}  
+            userFirstNameOnChange = {this.userFirstNameOnChange}
+            userLastNameOnChange = {this.userLastNameOnChange}
+            userEmailOnChange = {this.userEmailOnChange}
+            usernameOnChange = {this.usernameOnChange}
+            userPasswordOnChange = {this.userPasswordOnChange}
+            confirmedPasswordOnChange = {this.confirmedPasswordOnChange}
+          />
           </div>
         </div>
       );
     }
 
+<<<<<<< HEAD
     return (
       <div className="homepage-container">
 
@@ -252,6 +278,16 @@ class Homepage extends Component {
   </div>
 );
 }
+// =======
+//     return(
+//       <div class = "homepage-container">
+//         <div><font size="7" color="white">Join Us Now!</font></div>
+//         <RegularDiv onSignup = {this.onSignup} onLogin = {this.onLogin} emailOnChange = {this.emailOnChange} passwordOnChange = {this.passwordOnChange}/>
+//       </div>
+      
+//     )
+//   }
+// >>>>>>> b84b0ae20424e8a16a54be735a760a31e2d0522b
 }
 
 export default Homepage;
