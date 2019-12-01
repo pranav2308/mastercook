@@ -1,0 +1,45 @@
+.card-addon{
+	margin-top: 1%;
+	margin-left: 5%;
+	margin-bottom: 2%;
+	width: 18rem;
+}
+
+.progress-bar-addon{
+	width: 25%;	
+}
+
+.heading{
+	margin-top: 5%;
+}
+
+.sidebar-list {
+	color: #7a653f;
+	margin-left: 4%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+}
+
+
+.dashboard-container{
+	position: relative;
+	height: 100vh;
+	width: 100%;
+	/*border: solid 5px yellow;*/
+}
+.sidenav-container {
+	position: absolute;
+	/*height: 100%;*/
+	right: 0;
+	border: solid 5px #ff0000;
+	width: 25%;
+}
+
+.main-container{
+	position : absolute;
+	height: 100%;
+	left:0;
+	/*border: solid 5px #ff0000;*/
+	width: 75%;
+	margin-bottom:20%;
+}

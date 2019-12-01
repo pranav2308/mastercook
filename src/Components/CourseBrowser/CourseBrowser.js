@@ -1,9 +1,6 @@
 import React from 'react';
 import {Dropdown} from 'react-bootstrap';
 import firebase from '../../Firebase/firebase';
-import './CourseBrowser.css';
-import CourseItem from './CourseItem';
-import CourseList from './CourseList';
 import SearchEngine from '../SearchEngine/SearchEngine';
 import { any } from "prop-types";
 
