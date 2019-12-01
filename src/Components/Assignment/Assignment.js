@@ -54,26 +54,29 @@ class Assignment extends React.Component{
 
                <QuestionList onChangeTextAnswers = {this.onChangeTextAnswers} onChangeSelectAnswers = {this.onChangeSelectAnswers}/>
                 
-                <div class = "progress-text">
+                {/* <div class = "progress-text">
                     <p className = "font-weight-normal">Quiz Progress</p>
-                </div>
+                </div> */}
 
-                <div className="progress quiz-progress-bar">
+                {/* <div className="progress quiz-progress-bar">
                     <div className="progress-bar bg-success" role="progressbar" style = {{width : quizProgress}} aria-valuenow={quizProgress} aria-valuemin="0" aria-valuemax="100">{`${quizProgress}%`}</div>
-                </div>
+                </div> */}
 
                 <div class = "buttonContainer">
-                    <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft :'30%', marginRight:'5%'}}>Submit</button>
-                    <button type="button" class="btn btn-secondary btn-lg " style = {{marginRight: '30%', marginLeft:'5%'}}>Cancel</button>
+                    <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft :'5%', marginRight:'1%'}}>Submit Grades</button>
+                    <button type="button" class="btn btn-secondary btn-lg " style = {{marginRight: '5%', marginLeft:'1%'}}>Cancel</button>
                 </div>
 
                 <div class = "buttonUpload">
-                    <button type="button" class="btn btn-primary btn-lg">Upload</button>
-                </div>
+                    <button type="button" class="btn btn-primary btn-lg">Delete Assignment</button>
+                </div>    
+  
+                <input type="text" class="form-control1" id="formGroupExampleInput2" placeholder="Total Points"/>
 
-                <div class = "uploadText">
+
+                {/* <div class = "uploadText">
                     <p className = "font-weight-light font-italic">* Only .pdf format allowed</p>
-                </div>
+                </div> */}
             </div>
         );
 
