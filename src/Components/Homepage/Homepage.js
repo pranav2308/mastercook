@@ -209,7 +209,7 @@ class Homepage extends Component {
 
     return (
       <div className="homepage-container">
-    
+
         <RegularDiv
           onSignup={this.onSignup}
           onLogin={this.onLogin}
@@ -218,13 +218,13 @@ class Homepage extends Component {
 
     <div id="carouselExampleInterval" class="carousel-slide" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active" data-interval="10000">
+      <div class="carousel-item active" data-interval="10">
         <img src="https://assets.epicurious.com/photos/565f34dd87cc73f607397a89/16:9/w_2560%2Cc_limit/EP_11182015_olympia_provisions_inset.jpg" class="d-block w-100" alt="..."/>
       </div>
-      <div class="carousel-item" data-interval="2000">
+      <div class="carousel-item" data-interval="10">
         <img src="https://cdn2.eyeem.com/thumb/cc3cc4f2a27a34f4b162d723c15403ca364cea7d-1563693080266/w/700" class="d-block w-100" alt="..."/>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item"data-interval="10">
         <img src="https://metiza.com/wp-content/uploads/2019/04/healthy-cooking-classes-in-Canada.jpg" class="d-block w-100" alt="..."/>
       </div>
     </div>
@@ -237,9 +237,18 @@ class Homepage extends Component {
       <span class="sr-only">Next</span>
     </a>
   </div>
-
-
 <button type="button" class="btn btn-info">Join us now and get a chance to be a cooking expert at no cost!</button>
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+  About us
+  </a>
+
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+  It is critical for people to learn to cook their own food for incorporating healthy eating habits and peace of mind. MasterCook aims to teach people to cook food in an easy and interactive way. MasterCook aims to provide competitive, easy-to-use, web-based, interactive tool that will facilitate people to learn to cook from expert instructors at their own convenience.
+  </div>
+</div>
   </div>
 );
 }
