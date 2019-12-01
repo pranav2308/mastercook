@@ -1,6 +1,6 @@
 import React from 'react';
 import './Dashboard.css';
-import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement } from './helperMethods';
+import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement } from './helperMethods';
 
 
 class Dashboard extends React.Component{
@@ -8,34 +8,32 @@ class Dashboard extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			enrolledCourseList : []
+			enrolledCourseList : [],
+			announcementObj : null
 		}
 		this.setEnrolledCourseList = setEnrolledCourseList.bind(this);
-		// this.updateEnrollCourseList = updateEnrollCourseList.bind(this);
+		this.setAnnouncementObj = setAnnouncementObj.bind(this);
+		
 	}
 	
 	componentDidMount(){
-		// console.log('In componentDidMount: ', this.props.user);
+		
 		const {enrolledCourses} = this.props.user;
 		if(enrolledCourses){
 			this.setEnrolledCourseList(enrolledCourses);
 		}
+		this.setAnnouncementObj();
 	}
 	render(){		
 
 		const chickenImgUrl = "https://www.foodrepublic.com/wp-content/uploads/2014/06/cachacachicken_0.jpg";
-		
+
 		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList);
 
-		const announcementList = 
-		<div className = "sidebar-list">
-			<h3> Announcement </h3>
-			<li> website is going down tomorrow!</li>
-			<li> Admin is leaving this job. Apply now!</li>
-		</div>;
+		const announcementList = getAnnouncementRenderElement(this.state.announcementObj);
 
 		const assignmentList = getAssignmentRenderElement(this.state.enrolledCourseList);
-
+		
 		const{ firstName, accountType } = this.props.user;	
 		return(
 			<div className = "dashboard-container">

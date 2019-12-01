@@ -73,4 +73,35 @@ function getAssignmentRenderElement(enrolledCourseList){
 	}
 	
 }
-export { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement};
+
+async function setAnnouncementObj(){
+
+	const announcementObj = await new Promise((resolve, reject) => {
+			firebase.firestore.collection("Announcements").doc("AnnouncementList").onSnapshot(snapshot => {
+			resolve(snapshot.data());
+		})
+	});
+	this.setState({announcementObj : announcementObj});
+	// console.log(announcementObj);
+}
+
+function getAnnouncementRenderElement(announcementObj){
+	if(announcementObj){
+
+		let announcementList = [];
+		for (const announcementID in announcementObj){
+			announcementList.push(<li> {announcementObj[announcementID]}</li>)
+		}
+		if(announcementList){
+			return(
+				<div className = "sidebar-list">
+					<h3> Announcement </h3>
+					{announcementList}
+				</div>
+			);
+		}	
+	}
+	 
+}
+
+export { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement };
