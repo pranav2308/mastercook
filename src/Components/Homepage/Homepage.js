@@ -60,7 +60,7 @@ class Homepage extends Component {
       })
       .catch(error => {
         let errorCode = error.code;
-        let errorMessage = error.message;
+        //let errorMessage = error.message;
 
         console.log(errorCode);
 
@@ -117,28 +117,28 @@ class Homepage extends Component {
   }
 
   handleRegister(event) {
-    if (this.state.userFirstName == "") {
+    if (this.state.userFirstName === "") {
       alert("First Name Cannot Be Blank.");
     }
-    if (this.state.userLastName == "") {
+    if (this.state.userLastName === "") {
       alert("Last Name Cannot Be Blank.");
     }
-    if (this.state.userEmail == "") {
+    if (this.state.userEmail === "") {
       alert("Email Cannot Be Blank.");
     }
-    if (this.state.username == "") {
+    if (this.state.username === "") {
       alert("Username Cannot Be Blank.");
     }
-    if (this.state.userPassword == "") {
+    if (this.state.userPassword === "") {
       alert("Password Cannot Be Blank.");
     }
     if (this.state.userPassword.length < 8) {
       alert("Password Must Be More Than 8 Characters.");
     }
-    if (this.state.userConfirmedPassword == "") {
+    if (this.state.userConfirmedPassword === "") {
       alert("Please Confirm Password.");
     }
-    if (this.state.userPassword != this.state.userConfirmedPassword) {
+    if (this.state.userPassword !== this.state.userConfirmedPassword) {
       alert("Password and Confirmation Do Not Match.");
     }
 
