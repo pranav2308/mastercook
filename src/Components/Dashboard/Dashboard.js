@@ -53,7 +53,7 @@ class Dashboard extends React.Component{
 
 		const announcementList = getAnnouncementRenderElement(this.state.announcementObj);
 
-		const assignmentList = getAssignmentRenderElement(this.state.enrolledCourseList);
+		const assignmentList = getAssignmentRenderElement(this.state.enrolledCourseList, this.props.match);
 		
 		const{ firstName, accountType } = this.props.user;	
 		return(

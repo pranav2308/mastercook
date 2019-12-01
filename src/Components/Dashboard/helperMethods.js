@@ -1,5 +1,6 @@
 import React from "react";
 import CourseCard from './CourseCard';
+import { NavLink } from "react-router-dom";
 import firebase from "../../Firebase/firebase";
 
 async function setEnrolledCourseList(enrolledCourses) {
@@ -20,7 +21,7 @@ async function setEnrolledCourseList(enrolledCourses) {
 }
 
 function routeToCoursePage(courseID){
-	this.props.history.push('course/'.concat(courseID.toString()));
+	this.props.history.replace('/course/'.concat(courseID.toString()));
 }
 
 function getEnrolledCoursesRenderElement(enrolledCourseList, routeToCoursePage) {
@@ -50,12 +51,14 @@ function getEnrolledCoursesRenderElement(enrolledCourseList, routeToCoursePage) 
   );
 }
 
-function getAssignmentRenderElement(enrolledCourseList) {
+function getAssignmentRenderElement(enrolledCourseList, match) {
+  
+  const url = match.url;
   const assignmentRenderElement = enrolledCourseList.map(enrolledCourseObj => {
     const { Assignments } = enrolledCourseObj;
     if (Assignments) {
       const assignmentList = Assignments.map(assignmentID => (
-        <li> {`Assignment ${assignmentID}`}</li>
+        <NavLink className="nav-link" to= {'/assignment/'.concat(assignmentID.toString())}> {`Assignment ${assignmentID}`}</NavLink>
       ));
       return (
         <div>
