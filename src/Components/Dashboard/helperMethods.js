@@ -18,33 +18,51 @@ async function setEnrolledCourseList(enrolledCourses) {
   this.setState({ enrolledCourseList: enrolledCourseList });
 }
 
-
-function getEnrolledCoursesRenderElement(enrolledCourseList){
-	if(enrolledCourseList.length !== 0){
-		const courseList = enrolledCourseList.map(enrolledCourseObj => {
-			const { ImageUrl, DescriptionText, InstructorName, Name, progress } = enrolledCourseObj;
-			console.log('Description Text: ', DescriptionText);
-			return <div className = "col">
-						<div className = "card card-addon">
-						  <img src= {ImageUrl} class="card-img-top" alt="Tofu dishes" height = "200"/>
-						  <div class="card-body">
-						    <h5 class="card-title">{Name}</h5>
-						    <p class="card-text">{DescriptionText}</p>
-						    <p class="card-text"><span className = "font-weight-bold">Intructor:</span> {InstructorName}</p>
-						    <a class="btn btn-primary">Continue course</a>
-						  </div>
-						  <div class="progress">
-						  	<div className="progress-bar bg-success progress-bar-addon" role="progressbar" aria-valuenow={progress} style = {{width : progress}} aria-valuemin="0" aria-valuemax="100">{`${progress}%`}</div>
-						  </div>
-						</div>
-					</div>;
-		});
-		return (
-			courseList
-		);
-	}
-
-	return (
+function getEnrolledCoursesRenderElement(enrolledCourseList) {
+  if (enrolledCourseList.length !== 0) {
+    const courseList = enrolledCourseList.map(enrolledCourseObj => {
+      const {
+        ImageUrl,
+        DescriptionText,
+        InstructorName,
+        Name,
+        progress
+      } = enrolledCourseObj;
+      return (
+        <div className="col">
+          <div className="card card-addon">
+            <img
+              src={ImageUrl}
+              class="card-img-top"
+              alt="Tofu dishes"
+              height="200"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{Name}</h5>
+              <p class="card-text">{DescriptionText}</p>
+              <p class="card-text">
+                <span className="font-weight-bold">Intructor:</span>{" "}
+                {InstructorName}
+              </p>
+              <a class="btn btn-primary">Continue course</a>
+            </div>
+            <div class="progress">
+              <div
+                className="progress-bar bg-success progress-bar-addon"
+                role="progressbar"
+                aria-valuenow={progress}
+                style={{ width: progress + "%" }}
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >{`${progress}%`}</div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+    return courseList;
+  }
+  return (
     <div className="col">
       <p className="font-weight-light font-italic text-left">
         {" "}
