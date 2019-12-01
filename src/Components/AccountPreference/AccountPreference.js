@@ -25,6 +25,10 @@ class AccountPreference extends Component {
 		})
 	}
 
+	onChangeFirstName(){}
+	onChangeFirstName(){}
+	onChangeFirstName(){}
+
 	render() {
 		return (
 			<div className = "container">

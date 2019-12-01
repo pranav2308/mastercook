@@ -1,19 +1,10 @@
-<<<<<<< HEAD
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "typeface-roboto";
-import firebase from "../../Firebase/firebase";
-import Navbar from "../Navbar/Navbar";
-=======
 import React from 'react';
-
 import emptyUser from './helperObjects';
 import setUser from './helperMethods';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import firebase from '../../Firebase/firebase';
 import 'typeface-roboto';
 import Navbar from '../Navbar/Navbar';
->>>>>>> a058a7dd69c8a24f637ae167f93961172437404c
 import Homepage from '../Homepage/Homepage';
 import Login from '../Authentication/Login/Login';
 import Register from '../Authentication/Register/Register';
