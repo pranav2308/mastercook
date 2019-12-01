@@ -1,7 +1,7 @@
 import React from 'react';
 import './Dashboard.css';
 import firebase from "../../Firebase/firebase";
-import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement } from './helperMethods';
+import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement, routeToCoursePage } from './helperMethods';
 
 
 class Dashboard extends React.Component{
@@ -14,6 +14,8 @@ class Dashboard extends React.Component{
 		}
 		this.setEnrolledCourseList = setEnrolledCourseList.bind(this);
 		this.setAnnouncementObj = setAnnouncementObj.bind(this);
+		this.routeToCoursePage = routeToCoursePage.bind(this);
+		this.getEnrolledCoursesRenderElement = getEnrolledCoursesRenderElement.bind(this);
 		
 	}
 	
@@ -47,7 +49,7 @@ class Dashboard extends React.Component{
 
 		const pizzaImgUrl = "http://www.spoonforkbacon.com/wordpress/wp-content/uploads/2017/02/fall_pizza_recipe-800x1066.jpg";
 
-		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList);
+		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList, this.routeToCoursePage);
 
 		const announcementList = getAnnouncementRenderElement(this.state.announcementObj);
 

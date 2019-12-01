@@ -1,4 +1,5 @@
 import React from "react";
+import CourseCard from './CourseCard';
 import firebase from "../../Firebase/firebase";
 
 async function setEnrolledCourseList(enrolledCourses) {
@@ -18,7 +19,11 @@ async function setEnrolledCourseList(enrolledCourses) {
   this.setState({ enrolledCourseList: enrolledCourseList });
 }
 
-function getEnrolledCoursesRenderElement(enrolledCourseList) {
+function routeToCoursePage(courseID){
+	this.props.history.push('course/'.concat(courseID.toString()));
+}
+
+function getEnrolledCoursesRenderElement(enrolledCourseList, routeToCoursePage) {
   if (enrolledCourseList.length !== 0) {
     const courseList = enrolledCourseList.map(enrolledCourseObj => {
       const {
@@ -30,35 +35,7 @@ function getEnrolledCoursesRenderElement(enrolledCourseList) {
         progress
       } = enrolledCourseObj;
       return (
-        <div className="col">
-          <div className="card card-addon">
-            <img
-              src={ImageUrl}
-              class="card-img-top"
-              alt="Tofu dishes"
-              height="200"
-            />
-            <div class="card-body">
-              <h5 class="card-title">{`MC00${ID}: ${Name}`}</h5>
-              <p class="card-text">{Description}</p>
-              <p class="card-text">
-                <span className="font-weight-bold">Intructor:</span>{" "}
-                {InstructorName}
-              </p>
-              <a class="btn btn-primary">Continue course</a>
-            </div>
-            <div class="progress">
-              <div
-                className="progress-bar bg-success progress-bar-addon"
-                role="progressbar"
-                aria-valuenow={progress}
-                style={{ width: progress + "%" }}
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >{`${progress}%`}</div>
-            </div>
-          </div>
-        </div>
+        <CourseCard ImageUrl = {ImageUrl} ID = {ID} Name = {Name} InstructorName = {InstructorName} Description = {Description} progress = {progress} routeToCoursePage = {routeToCoursePage}/>
       );
     });
     return courseList;
@@ -134,5 +111,6 @@ export {
   getEnrolledCoursesRenderElement,
   getAssignmentRenderElement,
   setAnnouncementObj,
-  getAnnouncementRenderElement
+  getAnnouncementRenderElement,
+  routeToCoursePage
 };
