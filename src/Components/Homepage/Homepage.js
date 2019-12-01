@@ -188,7 +188,6 @@ class Homepage extends Component{
               this.setState({signedIn: true, error: false, message: '', register: false});
             });
         })
-
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
