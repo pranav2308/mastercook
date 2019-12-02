@@ -209,26 +209,15 @@ class Homepage extends Component {
 
     return (
       <div className="homepage-container">
-<<<<<<< HEAD
         <div>
           <font size="7" color="white">
             Join Us Now!
           </font>
         </div>
-=======
-    
->>>>>>> 464fedac79ac72dc5e532eba8ef9571a5037310f
         <RegularDiv
           onSignup={this.onSignup}
           onLogin={this.onLogin}
           emailOnChange={this.emailOnChange}
-<<<<<<< HEAD
-          passwordOnChange={this.passwordOnChange}
-        />
-      </div>
-    );
-  }
-=======
           passwordOnChange={this.passwordOnChange} />
 
     <div id="carouselExampleInterval" class="carousel-slide" data-ride="carousel">
@@ -258,7 +247,6 @@ class Homepage extends Component {
   </div>
 );
 }
->>>>>>> 464fedac79ac72dc5e532eba8ef9571a5037310f
 }
 
 export default Homepage;
