@@ -1,0 +1,89 @@
+
+body{
+    height: 100%;
+    width: 100%;
+    
+}
+.headingContainer {
+    /* border:solid blue 2px; */
+    height: 30vh;
+    width: 70%;
+    position: relative;
+    margin: 1%;
+    border: solid 2px white;
+    text-align: center;
+    font-display: white;
+    text-decoration: aliceblue;
+    background-color : lightgrey;
+}
+
+.questionsContainer {
+    /* border: solid green 2px; */
+    height: 50vh;
+    width: 70%;
+    position: absolute;
+    margin-left: 1%;
+    display:flex;
+    overflow:hidden; 
+    left : 0;
+    overflow-y: scroll; 
+    border: solid 2px white;
+    margin-bottom: 1%;
+    
+
+}
+
+.question-answer{
+    margin: 1%;
+}
+
+.question-text{
+    color: #b6bd8f;
+}
+.buttonContainer {
+    position :absolute;
+    bottom : 0;
+    width: 100%;
+    margin-bottom: 5px;
+    /*margin-bottom: 0px;*/
+    /*right: 0px;*/
+    /*align-items: center;*/
+}
+
+.buttonUpload {
+    position: absolute;
+    right: 10%;
+    top : 15%;
+
+    
+}
+.uploadText {
+    position:absolute;
+    right:7%;
+    top:23%;
+    text-decoration: underline;
+    font-display: white;
+}
+
+.sidenav-container {
+	position: absolute;
+	height: 50%;
+	right: 0;
+	border: solid white;
+    width: 25%;
+    margin-top: 10%;
+    overflow-y: scroll ;
+}
+
+.progress-text{
+    position: absolute;
+    right: 19%;
+    bottom:12%;
+}
+
+.quiz-progress-bar {
+    position: absolute;
+    right : 0;
+    bottom : 10%;
+    width : 25%;
+}
