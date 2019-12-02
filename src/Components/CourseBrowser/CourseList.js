@@ -24,8 +24,8 @@ class CourseList extends Component {
         
             console.log(this.props.searchResults[0]);
 
-            let indexOfLastCourse = this.state.currentPage * 10;
-            let indexOfFirstCourse = indexOfLastCourse - 10;
+           // let indexOfLastCourse = this.state.currentPage * 10;
+           // let indexOfFirstCourse = indexOfLastCourse - 10;
 
             this.props.searchResults.forEach(result => {
                 courseArr.push(<CourseItem name={result.name} description={result.description}
@@ -36,7 +36,7 @@ class CourseList extends Component {
             
             console.log(courseArr);
 
-            let coursePerPage = courseArr.slice(indexOfFirstCourse, indexOfLastCourse);
+          //  let coursePerPage = courseArr.slice(indexOfFirstCourse, indexOfLastCourse);
 
             return(
                 <div>
@@ -44,7 +44,7 @@ class CourseList extends Component {
                 </div>
             );
         } else {
-            return <div> There are no matching courses! </div>
+            return <div> Loading... </div>
         }
 
 
