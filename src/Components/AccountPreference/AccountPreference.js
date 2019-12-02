@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AccountPreference = () => {
+const AccountPreference = (props) => {
 
 	const tableStyle = {
 		height : '300px',
@@ -13,7 +13,7 @@ const AccountPreference = () => {
 		fontWeight: 'bold',
 		fontSize : '350%'
 	}
-
+	console.log(props.user);
 	return(
 		<table style = {tableStyle}>
 		  <tbody>

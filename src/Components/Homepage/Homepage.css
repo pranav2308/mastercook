@@ -20,14 +20,15 @@
 .register-container {
     border-radius: 15px;
     background-color: whitesmoke;
-    height: 450px;
+    height: 525px;
     width: 380px;
-    padding-left: 50px;
-    padding-top: 40px;
-    display: flex;
+    padding: 30px;
+    /*display: flex;*/
     position: absolute;
-    right: 90px;
-    top: 40px;
+    /*right: 90px;*/
+    /*top: 40px;*/
+    margin-left: 40%;
+    margin-top: 5%;
 }
 
 .homepage-container {
@@ -43,13 +44,20 @@
 }
 .carousel-slide{
 position: relative;
+margin-top: 1%;
 width: 70%;
-height : 40%;
+height : 100%;
 bottom: 50%;
 }
 .btn-info {
 position: absolute;
-bottom : 20px;
-  left : 20px;
+bottom : 1%;
+  left : 30%;
+
+}
+.btn-primary{
+  position: relative;
+  left : 10%;
+  bottom : 5%;
 
 }
