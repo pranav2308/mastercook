@@ -34,6 +34,7 @@ class Homepage extends Component{
     this.usernameOnChange = this.usernameOnChange.bind(this);
     this.userPasswordOnChange = this.userPasswordOnChange.bind(this);
     this.confirmedPasswordOnChange = this.confirmedPasswordOnChange.bind(this);
+    this.accountTypeOnChange = this.accountTypeOnChange.bind(this);
   }
 
   emailOnChange(event) {
@@ -133,6 +134,10 @@ class Homepage extends Component{
     this.setState({userConfirmedPassword: event.target.value});
   }
 
+  accountTypeOnChange(event){
+    console.log('')
+    this.setState({accountType : event.target.value});
+  }
 
   handleRegister(event){
 
@@ -229,6 +234,7 @@ class Homepage extends Component{
             usernameOnChange = {this.usernameOnChange}
             userPasswordOnChange = {this.userPasswordOnChange}
             confirmedPasswordOnChange = {this.confirmedPasswordOnChange}
+            accountTypeOnChange = {this.accountTypeOnChange}
           />
           </div>
         </div>

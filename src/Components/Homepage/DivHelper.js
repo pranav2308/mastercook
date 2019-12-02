@@ -100,7 +100,16 @@ const RegisterDiv = props => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="button" onClick={props.handleRegister}>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>Account Type</Form.Label>
+          <Form.Control as="select" onChange = {props.accountTypeOnChange}>
+            <option>Student</option>
+            <option>Instructor</option>
+            <option>Admin</option>
+          </Form.Control>
+        </Form.Group>
+
+        <Button variant="primary" type="button" style = {{marginLeft : '23%'}}onClick={props.handleRegister}>
           Submit
         </Button>
       </Form>
