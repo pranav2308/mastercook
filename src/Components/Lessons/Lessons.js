@@ -12,9 +12,18 @@ class Lessons extends React.Component {
     this.handleLessonClick = this.handleLessonClick.bind(this);
   }
 
-  handleLessonClick() {}
+  handleLessonClick(lesson, index) {
+    // pass back the video ID of clicked lesson to parent
+    let vidID = "G-Fg7l7G1zw";
+    if (typeof lesson["videoID"] !== "undefined") {
+      vidID = lesson["videoID"];
+    }
+    this.props.callbackFromParent(vidID);
+  }
 
   render() {
+    if (typeof this.props.currentCourse["lessons"] !== "undefined") {
+    }
     const useStyles = makeStyles(theme => ({
       root: {
         width: "100%"
@@ -25,33 +34,21 @@ class Lessons extends React.Component {
       }
     }));
 
-    const lessonsArr = [
-      [
-        "Lesson1",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-      ],
-      [
-        "Lesson2",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-      ],
-      [
-        "Lesson3",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-      ],
-      [
-        "Lesson4",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-      ],
-      [
-        "Lesson5",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-      ]
-    ];
+    let courseLessons = [];
+
+    if (typeof this.props.currentCourse["lessons"] !== "undefined") {
+      courseLessons = this.props.currentCourse["lessons"];
+    }
 
     return (
       <div className={useStyles.root}>
-        {lessonsArr.map((lesson, index) => (
-          <ExpansionPanel key={index}>
+        {courseLessons.map((lesson, index) => (
+          <ExpansionPanel
+            key={index}
+            onClick={function(e) {
+              this.handleLessonClick(lesson, index);
+            }.bind(this)}
+          >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
@@ -59,11 +56,11 @@ class Lessons extends React.Component {
               key={index}
             >
               <Typography className={useStyles.heading} key={index}>
-                {lesson[0]}
+                {lesson["lessonName"]}
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails key={index}>
-              <Typography key={index}>{lesson[1]} </Typography>
+              <Typography key={index}>{lesson["descriptionText"]} </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
         ))}

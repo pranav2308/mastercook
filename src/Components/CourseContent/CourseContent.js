@@ -8,16 +8,15 @@ class CourseContent extends React.Component {
     super(props);
     this.state = { currentVidID: any };
     this.componentDidMount = this.componentDidMount.bind(this);
-    console.log(this.props);
   }
 
   componentDidMount() {}
 
   render() {
-    const lessonNum = 1;
-    let contentID = "G-Fg7l7G1zw";
-    if (typeof this.props.currentCourse["lessons"] !== "undefined") {
-      contentID = this.props.currentCourse["lessons"][lessonNum]["videoID"];
+    let contentID = "";
+
+    if (typeof this.props.vidID !== "undefined") {
+      contentID = this.props.vidID;
     }
     return <Youtube id={contentID} />;
   }

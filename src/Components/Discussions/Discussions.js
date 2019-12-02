@@ -1,87 +1,63 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import '../Discussions/Discussions.css'
+import React from "react";
+import { Tab, Tabs } from "react-bootstrap";
+import "../Discussions/Discussions.css";
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
+class Discussion extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // Takes active tab from props if it is defined there
+      activeTab: props.activeTab || 1
+    };
+    this.handleSelect = this.handleSelect.bind(this);
+  }
+
+  handleSelect(selectedTab) {
+    // The active tab must be set into the state so that
+    // the Tabs component knows about the change and re-renders.
+    this.setState({
+      activeTab: selectedTab
+    });
+  }
+
+  render() {
+    let courseDescription = "Description of the course you're taking.";
+    let questionAnswers = [{}];
+    let comments = ["-"];
+    if (typeof this.props.currentDiscussions !== "undefined") {
+      courseDescription = this.props.currentDiscussions["Description"];
+      questionAnswers = this.props.currentDiscussions["QA"];
+      comments = this.props.currentDiscussions["Comments"];
+    }
     return (
-      <Typography
-        component="div"
-        role="tabpanel"
-        hidden={value !== index}
-        id={`scrollable-auto-tabpanel-${index}`}
-        aria-labelledby={`scrollable-auto-tab-${index}`}
-        {...other}
-      >
-        <Box p={3}>{children}</Box>
-      </Typography>
+      <div className="tab-container">
+        <Tabs
+          activeKey={this.state.activeTab}
+          onSelect={this.handleSelect}
+          className="app-bar"
+        >
+          <Tab eventKey={1} title="Description">
+            <p>{courseDescription}</p>
+          </Tab>
+
+          <Tab eventKey={2} title="Q&A">
+            {questionAnswers.map((el, index) => (
+              <div key={index}>
+                <b key={index}>• {el["Question"]}</b>
+                <br key={index + 1} />
+                <i key={index + 2}>{el["Answer"]}</i>
+              </div>
+            ))}
+          </Tab>
+          <Tab eventKey={3} title="Comments">
+            {comments.map((el, index) => (
+              <p key={index}>- {el}</p>
+            ))}
+          </Tab>
+        </Tabs>
+      </div>
     );
   }
-  
-  TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-  };
-  
-  function a11yProps(index) {
-    return {
-      id: `scrollable-auto-tab-${index}`,
-      'aria-controls': `scrollable-auto-tabpanel-${index}`,
-    };
-  }
-  
-  const useStyles = makeStyles(theme => ({
-    root: {
-        borderRadius: 5,
-      width: '90%',
-      height: '90%',
-      backgroundColor: theme.palette.background.paper,
-    },
-  }));
-
-export default function CenteredTabs() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  return (
-    <div className={classes.root}>
-    <AppBar position="static" color="default" style={{ borderRadius: 5 }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        aria-label="discussions panel"
-        centered
-      >
-        <Tab label="Description" {...a11yProps(0)} />
-        <Tab label="Q&A" {...a11yProps(1)} />
-        <Tab label="Comments" {...a11yProps(2)} />
-      
-      </Tabs>
-    </AppBar>
-    <TabPanel value={value} index={0}>
-      Description of the course you're taking!
-    </TabPanel>
-    <TabPanel value={value} index={1}>
-      Here you can ask and answer questions!
-    </TabPanel>
-    <TabPanel value={value} index={2}>
-      Comments on the course you're taking from fellow users!
-    </TabPanel>
-    
-  </div>
-  );
 }
+
+export default Discussion;

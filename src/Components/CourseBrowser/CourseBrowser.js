@@ -1,6 +1,7 @@
 import { any } from "prop-types";
 import React from "react";
 import firebase from "../../Firebase/firebase";
+import "../CourseBrowser/CourseBrowser.css";
 
 let courseRef = firebase.firestore.collection("Courses");
 
@@ -78,15 +79,9 @@ class CourseBrowser extends React.Component {
 
   render() {
     return (
-      <table className="tableStyle">
-        <tbody>
-          <tr>
-            <td className="align-middle text-center bigHeadingStyle">
-              Course Browser Page
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="course-browser-container">
+        <p> test </p>
+      </div>
     );
   }
 }

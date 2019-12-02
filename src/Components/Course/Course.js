@@ -16,7 +16,8 @@ class Course extends React.Component {
         lessons: [],
         courseName: ""
       },
-      currentCourse: {}
+      currentCourse: {},
+      currentVidID: "G-Fg7l7G1zw"
     };
     this.componentDidMount = this.componentDidMount.bind(this);
   }
@@ -57,24 +58,37 @@ class Course extends React.Component {
       this.setState({
         courses: newCourse,
         courseLessons: newCourseLessons,
-        currentCourse: newCurrent
+        currentCourse: newCurrent,
+        currentVidID: newCurrent["lessons"][0]["videoID"]
       });
     });
   }
 
   componentDidUpdate() {}
 
+  lessonsCallback = dataFromLessons => {
+    this.setState({ currentVidID: dataFromLessons });
+  };
+
   render() {
     return (
       <div className="courseContainer">
         <div className="courseContent">
-          <CourseContent currentCourse={this.state.currentCourse} />
+          <CourseContent
+            currentCourse={this.state.currentCourse}
+            vidID={this.state.currentVidID}
+          />
         </div>
         <div className="lessonsContainer">
-          <Lessons currentCourse={this.state.currentCourse} />
+          <Lessons
+            currentCourse={this.state.currentCourse}
+            callbackFromParent={this.lessonsCallback}
+          />
         </div>
         <div className="discussionContent">
-          <Discussions />
+          <Discussions
+            currentDiscussions={this.state.currentCourse["discussions"]}
+          />
         </div>
       </div>
     );
