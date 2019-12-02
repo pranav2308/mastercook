@@ -1,6 +1,8 @@
 import React from 'react';
 import './Dashboard.css';
 import firebase from "../../Firebase/firebase";
+import DashboardInstructor from './DashboardInstructor';
+
 import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement, routeToCoursePage } from './helperMethods';
 
 
@@ -48,6 +50,12 @@ class Dashboard extends React.Component{
 	}
 	render(){		
 
+		const{ firstName, accountType } = this.props.user;	
+
+		if(accountType === 'Instructor'){
+			return <DashboardInstructor firstName = {firstName} accountType = {accountType} {...this.props}/>
+		}
+
 		const pizzaImgUrl = "http://www.spoonforkbacon.com/wordpress/wp-content/uploads/2017/02/fall_pizza_recipe-800x1066.jpg";
 
 		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList, this.routeToCoursePage);
@@ -56,7 +64,7 @@ class Dashboard extends React.Component{
 
 		const assignmentList = getAssignmentRenderElement(this.state.enrolledCourseList, this.props.match);
 		
-		const{ firstName, accountType } = this.props.user;	
+		
 		return(
 			<div className = "dashboard-container">
 				<div class = "sidenav-container">
