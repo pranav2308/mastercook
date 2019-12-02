@@ -209,20 +209,56 @@ class Homepage extends Component {
 
     return (
       <div className="homepage-container">
+<<<<<<< HEAD
         <div>
           <font size="7" color="white">
             Join Us Now!
           </font>
         </div>
+=======
+    
+>>>>>>> 464fedac79ac72dc5e532eba8ef9571a5037310f
         <RegularDiv
           onSignup={this.onSignup}
           onLogin={this.onLogin}
           emailOnChange={this.emailOnChange}
+<<<<<<< HEAD
           passwordOnChange={this.passwordOnChange}
         />
       </div>
     );
   }
+=======
+          passwordOnChange={this.passwordOnChange} />
+
+    <div id="carouselExampleInterval" class="carousel-slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-interval="10000">
+        <img src="https://assets.epicurious.com/photos/565f34dd87cc73f607397a89/16:9/w_2560%2Cc_limit/EP_11182015_olympia_provisions_inset.jpg" class="d-block w-100" alt="..."/>
+      </div>
+      <div class="carousel-item" data-interval="2000">
+        <img src="https://cdn2.eyeem.com/thumb/cc3cc4f2a27a34f4b162d723c15403ca364cea7d-1563693080266/w/700" class="d-block w-100" alt="..."/>
+      </div>
+      <div class="carousel-item">
+        <img src="https://metiza.com/wp-content/uploads/2019/04/healthy-cooking-classes-in-Canada.jpg" class="d-block w-100" alt="..."/>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+<button type="button" class="btn btn-info">Join us now and get a chance to be a cooking expert at no cost!</button>
+  </div>
+);
+}
+>>>>>>> 464fedac79ac72dc5e532eba8ef9571a5037310f
 }
 
 export default Homepage;
