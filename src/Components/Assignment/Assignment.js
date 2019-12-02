@@ -43,7 +43,8 @@ class Assignment extends React.Component{
 
 
     onSubmit = () => {
-        const assignmentID = this.props.match.params.id;
+
+        const assignmentID = this.props.computedMatch.params.id;
         // console.log(assignmentID)
         firebase.firestore.collection('QuizContent').doc(assignmentID.toString()).onSnapshot(snapshot => {
             const correctAnswers = snapshot.data().CorrectAnswers;
@@ -83,7 +84,6 @@ class Assignment extends React.Component{
     
     render(){
 
-
         const{ accountType } = this.props.user;
         if(accountType === 'Instructor'){
             return <AssignmentInstructor {...this.props}/>
@@ -92,7 +92,7 @@ class Assignment extends React.Component{
         const sideNavList = this.getSideNavList(questionTracker);
         const quizProgress = this.getQuizProgress(questionTracker);
 
-        const assignmentID = this.props.match.params.id;
+        const assignmentID = this.props.computedMatch.params.id;
         const user = this.props.user;
 
 

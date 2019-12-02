@@ -21,10 +21,7 @@ const ScoreAndButtons = (props) => {
         buttonContainerElements = 
          <div className = "row align-items-center">
             <div className = "col">
-                <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft : '15%'}} onClick = {props.onSubmit}>Submit</button>
-            </div>
-            <div className = "col">
-                <button type="button" class="btn btn-secondary btn-lg" style = {{marginLeft : '15%'}} onClick = {props.onBackToDashboardButtonClick}>Back to Dashboard</button>
+                <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft : '1%'}} onClick = {props.onSubmit}>Submit</button>
             </div>
         </div>;
     }
