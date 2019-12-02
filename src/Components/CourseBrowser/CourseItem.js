@@ -12,22 +12,17 @@ class CourseItem extends Component {
             name: '',
             description: '',
             duration: '',
-            data: []
+            user: ''
         };
     }
 
     componentDidMount(){
-        courseRef.onSnapshot(async (s) => {
-            await s.forEach(doc => {
-                this.setState({data: doc.data()});
-                this.setState({
-                    name: this.state.data.Name, 
-                    description: this.state.data.Description,
-                    duration: this.state.data.Duration
-                
-                });
-            })
-        })
+        this.setState({
+            name: this.props.name,
+            description: this.props.description,
+            duration: this.props.duration,
+            user: this.props.user
+        });
     }
 
     render() {

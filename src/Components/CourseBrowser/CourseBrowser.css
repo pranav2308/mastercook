@@ -1,32 +1,23 @@
-<<<<<<< HEAD
 
 .resultCardImage{
 	width: 200px;
 	height: 200px;
 }
-.resultCard{
-	width : 90%;
-	height: 80%;
-	border: solid 2px red;
-}
-
 .card {
-	background-color: green;
-}
-.optionContainer{
-	margin: auto;
-	border: solid 2px black;
-	display: flex;
-	padding-top: 100px;
-	justify-content: flex-start;
+	background-color:green;
 }
 .categories-container {
-	order: 1;
+  order: 2;
+  height: 40px;
+  width: 200px;
+  border: solid 2px white; 
 }
 .sort-by-container {
-	order: 2;
+  order: 1;
+  height: 40px;
+  width: 200px;
+  border: solid 2px yellow; 
 }
-=======
 .tableStyle {
   height: 300px;
   margin-top: 10%;
@@ -44,8 +35,31 @@
   width: 200px;
 }
 .course-browser-container {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   border: blue solid 2px;
+  display:flex; 
+  justify-content: center;
+  align-items: center;
+  position: relative; 
 }
->>>>>>> 4c237571942f24dfdd7965c0c6d0cee28f396f2a
+.result-container{
+  height: 70%;
+  width: 80%;
+  border: solid red 2px; 
+  position: absolute;
+}
+
+.options-container {
+  padding-left: 20px;
+  position: absolute; 
+  display: flex; 
+  top: 0;
+  height: 15%;
+  width: 100%;
+  border: solid salmon 2px; 
+  align-items: flex-end; 
+  justify-content: space-around;
+}
+
+
