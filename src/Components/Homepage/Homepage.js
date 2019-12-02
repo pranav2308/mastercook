@@ -39,12 +39,12 @@ class Homepage extends Component{
 
   emailOnChange(event) {
     this.setState({userEmail: event.target.value});
-    console.log(this.state.userEmail);
+    // console.log(this.state.userEmail);
   }
 
   passwordOnChange(event) {
     this.setState({userPassword: event.target.value});
-    console.log(this.state.userPassword);
+    // console.log(this.state.userPassword);
   }
 
   onLogin = (event) => {
@@ -77,7 +77,6 @@ class Homepage extends Component{
         this.props.setUser(userObj);
         this.setState({signedIn: true, userEmail: '', userPassword: '', error: false, message: '', register: false});
       })
-      alert("You Are Signed In!");
     })
     .catch((error) => {
       let errorCode = error.code;
@@ -135,7 +134,6 @@ class Homepage extends Component{
   }
 
   accountTypeOnChange(event){
-    console.log('')
     this.setState({accountType : event.target.value});
   }
 
@@ -166,7 +164,8 @@ class Homepage extends Component{
       alert('Password and Confirmation Do Not Match.');
     }
 
-    firebase.auth.createUserWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
+    else{
+      firebase.auth.createUserWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
       .then((user) => {
             const { userFirstName, userLastName, accountType, userEmail } = this.state;
             firebase.database.ref('users/' + user.user.uid).set({
@@ -214,6 +213,8 @@ class Homepage extends Component{
           alert('Weak Password.');
         }
       });
+    }
+    
   }
 
   render(){
