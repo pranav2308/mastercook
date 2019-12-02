@@ -49,12 +49,12 @@ class App extends React.Component{
 					<Route exact path = "/" render = { (props) => <Homepage {...props} setUser = {this.setUser}/>}/>
 					<Route exact path = "/login" component = {Login}/>
 					<Route exact path = "/register" component = {Register}/>
-					<Route exact path = "/dashboard/" render = {(props) => <Dashboard {...props} user = {this.state.user}/>}/>
-					<Route path = "/course/:id" render = {(props) => <Course {...props} user = {this.state.user}/>}/>
-					<Route path = "/courseBrowser/" render = {(props) => <CourseBrowser {...props} user = {this.state.user}/>}/>
-					<Route path = "/settings/" render = {(props) => <AccountPreference {...props} user = {this.state.user}/>}/>
-					<Route path = "/messages" render = {(props) => <Messages {...props} user = {this.state.user}/>}/>
-					<Route path = "/assignment/:id" render = {(props) => <Assignment {...props} user = {this.state.user}/>}/>
+					<Route exact path = "/dashboard/" render = {(props) => <Dashboard {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
+					<Route path = "/course/:id" render = {(props) => <Course {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
+					<Route path = "/courseBrowser/" render = {(props) => <CourseBrowser {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
+					<Route path = "/settings/" render = {(props) => <AccountPreference {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
+					<Route path = "/messages" render = {(props) => <Messages {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
+					<Route path = "/assignment/:id" render = {(props) => <Assignment {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
 					<Route component = {PageNotFound}/>
 				</Switch>
 			 </Router>

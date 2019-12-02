@@ -47,15 +47,19 @@ class Assignment extends React.Component{
             const userID = firebase.auth.currentUser.uid;
 
             let { pastAssignments } = this.props.user;
-            let newAssignments;
             if(pastAssignments){
-                newAssignments = pastAssignments.push({assignmentID: assignmentID, points : userPoints});
+                pastAssignments = pastAssignments.push({assignmentID: assignmentID, points : userPoints});
             }
             else{
-                newAssignments = [{assignmentID: assignmentID, points : userPoints}]
+                pastAssignments = [{assignmentID: assignmentID, points : userPoints}]
             }
 
-            firebase.database.ref('users/' + userID).update({PastAssignments : newAssignments});
+            firebase.database.ref('users/' + userID).update({PastAssignments : pastAssignments})
+            .then(() => {
+                this.props.setUser(Object.assign(this.props.user, {pastAssignments : pastAssignments}));
+            });
+
+
         })
     }
     

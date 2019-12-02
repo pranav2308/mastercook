@@ -53,7 +53,7 @@ class Homepage extends Component{
       
       const userID = firebase.auth.currentUser.uid;
       firebase.database.ref('users/' + userID).once('value').then((snapshot) => {
-        const { FirstName, LastName, Language, FontSize, Email, AccountType, ProfilePic, ShareProgress, Messages, EnrolledCourses } = snapshot.val();
+        const { FirstName, LastName, Language, FontSize, Email, AccountType, ProfilePic, ShareProgress, Messages, EnrolledCourses, PastAssignments } = snapshot.val();
         let userObj = {
           firstName : FirstName,
           lastName : LastName,
@@ -69,6 +69,9 @@ class Homepage extends Component{
         }
         if(EnrolledCourses){
           userObj.enrolledCourses = EnrolledCourses;
+        }
+        if(PastAssignments){
+          userObj.pastAssignments = PastAssignments;
         }
         this.props.setUser(userObj);
         this.setState({signedIn: true, userEmail: '', userPassword: '', error: false, message: '', register: false});
@@ -231,63 +234,51 @@ class Homepage extends Component{
         </div>
       );
     }
-
-<<<<<<< HEAD
     return (
-      <div className="homepage-container">
+        <div className="homepage-container">
 
-        <RegularDiv
-          onSignup={this.onSignup}
-          onLogin={this.onLogin}
-          emailOnChange={this.emailOnChange}
-          passwordOnChange={this.passwordOnChange} />
+          <RegularDiv
+            onSignup={this.onSignup}
+            onLogin={this.onLogin}
+            emailOnChange={this.emailOnChange}
+            passwordOnChange={this.passwordOnChange} />
 
-    <div id="carouselExampleInterval" class="carousel-slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-interval="10">
-        <img src="https://assets.epicurious.com/photos/565f34dd87cc73f607397a89/16:9/w_2560%2Cc_limit/EP_11182015_olympia_provisions_inset.jpg" class="d-block w-100" alt="..."/>
+      <div id="carouselExampleInterval" class="carousel-slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="10">
+          <img src="https://assets.epicurious.com/photos/565f34dd87cc73f607397a89/16:9/w_2560%2Cc_limit/EP_11182015_olympia_provisions_inset.jpg" class="d-block w-100" alt="..."/>
+        </div>
+        <div class="carousel-item" data-interval="10">
+          <img src="https://cdn2.eyeem.com/thumb/cc3cc4f2a27a34f4b162d723c15403ca364cea7d-1563693080266/w/700" class="d-block w-100" alt="..."/>
+        </div>
+        <div class="carousel-item"data-interval="10">
+          <img src="https://metiza.com/wp-content/uploads/2019/04/healthy-cooking-classes-in-Canada.jpg" class="d-block w-100" alt="..."/>
+        </div>
       </div>
-      <div class="carousel-item" data-interval="10">
-        <img src="https://cdn2.eyeem.com/thumb/cc3cc4f2a27a34f4b162d723c15403ca364cea7d-1563693080266/w/700" class="d-block w-100" alt="..."/>
-      </div>
-      <div class="carousel-item"data-interval="10">
-        <img src="https://metiza.com/wp-content/uploads/2019/04/healthy-cooking-classes-in-Canada.jpg" class="d-block w-100" alt="..."/>
-      </div>
+      <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
+  <button type="button" class="btn btn-info">Join us now and get a chance to be a cooking expert at no cost!</button>
+  <p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    About us
     </a>
-    <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-<button type="button" class="btn btn-info">Join us now and get a chance to be a cooking expert at no cost!</button>
-<p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-  About us
-  </a>
 
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-  It is critical for people to learn to cook their own food for incorporating healthy eating habits and peace of mind. MasterCook aims to teach people to cook food in an easy and interactive way. MasterCook aims to provide competitive, easy-to-use, web-based, interactive tool that will facilitate people to learn to cook from expert instructors at their own convenience.
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+    It is critical for people to learn to cook their own food for incorporating healthy eating habits and peace of mind. MasterCook aims to teach people to cook food in an easy and interactive way. MasterCook aims to provide competitive, easy-to-use, web-based, interactive tool that will facilitate people to learn to cook from expert instructors at their own convenience.
+    </div>
   </div>
-</div>
-  </div>
-);
+    </div>
+  );
 }
-// =======
-//     return(
-//       <div class = "homepage-container">
-//         <div><font size="7" color="white">Join Us Now!</font></div>
-//         <RegularDiv onSignup = {this.onSignup} onLogin = {this.onLogin} emailOnChange = {this.emailOnChange} passwordOnChange = {this.passwordOnChange}/>
-//       </div>
-      
-//     )
-//   }
-// >>>>>>> b84b0ae20424e8a16a54be735a760a31e2d0522b
 }
 
 export default Homepage;

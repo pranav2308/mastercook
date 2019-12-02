@@ -41,6 +41,7 @@ class Dashboard extends React.Component{
 		.then(() => {
 			
 			this.setEnrolledCourseList(enrolledCourses);
+			this.props.setUser(Object.assign(this.props.user, {enrolledCourses : enrolledCourses}));
 		})
 		.catch(error => console.log(error));
 		
