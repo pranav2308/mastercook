@@ -3,6 +3,9 @@ import './Assignment.css';
 import VerificationEngine from '../VerificationEngine/VerificationEngine';
 import firebase from "../../Firebase/firebase";
 import { updateQuestionTracker, onChangeTextAnswers, onChangeSelectAnswers, getSideNavList, getQuizProgress, onBackToDashboardButtonClick } from './helperMethods';
+
+import AssignmentInstructor from './AssignmentInstructor';
+
 import QuizHeading from './QuizHeading';
 import QuestionList from './QuestionList';
 import ScoreAndButtons from './ScoreAndButtons';
@@ -80,6 +83,11 @@ class Assignment extends React.Component{
     
     render(){
 
+
+        const{ accountType } = this.props.user;
+        if(accountType === 'Instructor'){
+            return <AssignmentInstructor {...this.props}/>
+        }
         const { questionTracker } = this.state;
         const sideNavList = this.getSideNavList(questionTracker);
         const quizProgress = this.getQuizProgress(questionTracker);
