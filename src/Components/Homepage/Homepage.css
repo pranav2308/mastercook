@@ -1,12 +1,12 @@
 .login-container {
     background-color: whitesmoke;
     height: 350px;
-    width: 350px;
-    padding-left: 40px;
+    width: 350px; 
+    padding-left: 40px; 
     padding-top: 60px;
-    display: flex;
-    position: absolute;
-    right: 30px;
+    display: flex; 
+    position: absolute; 
+    right: 80px; 
     top: 40px;
     border-radius: 15px;
 }
@@ -21,13 +21,13 @@
     border-radius: 15px;
     background-color: whitesmoke;
     height: 450px;
-    width: 380px;
-    padding-left: 50px;
+    width: 380px; 
+    padding-left: 50px; 
     padding-top: 40px;
-    display: flex;
-    position: absolute;
-    right: 90px;
-    top: 40px;
+    display: flex; 
+    position: absolute; 
+    right: 80px; 
+    top: 40px; 
 }
 
 .homepage-container {

@@ -13,6 +13,7 @@ import Homepage from "../Homepage/Homepage";
 import Messages from "../Messages/Messages";
 import Navbar from "../Navbar/Navbar";
 import Admin from "../Admin/admin";
+import CourseStudent from '../CourseStudent/CourseStudent';
 import "./App.css";
 
 class App extends React.Component {
@@ -43,7 +44,10 @@ class App extends React.Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/dashboard/" component={Dashboard} />
           <Route path="/course/:id" component={Course} />
-          <Route path="/courseBrowser/" component={CourseBrowser} />
+          <Route
+            path="/courseBrowser/:searchString"
+            component={CourseBrowser}
+          />
           <Route path="/settings/" component={AccountPreference} />
           <Route path="/messages" component={Messages} />
           <Route path="/assignment/:id" component={Assignment} />
