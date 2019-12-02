@@ -16,6 +16,7 @@ import AccountPreference from '../AccountPreference/AccountPreference';
 import Messages from '../Messages/Messages';
 import Assignment from '../Assignment/Assignment';
 import ViewGrades from '../ViewGrades/ViewGrades';
+import ViewStudents from '../ViewStudents/ViewStudents';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
@@ -57,6 +58,7 @@ class App extends React.Component{
 					<Route path = "/messages" render = {(props) => <Messages {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
 					<Route path = "/assignment/:id" render = {(props) => <Assignment {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
 					<Route path = "/viewGrades/" render = {(props) => <ViewGrades {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
+					<Route path = "/viewStudents/" render = {(props) => <ViewStudents {...props} user = {this.state.user} setUser = {this.setUser}/>}/>
 					<Route component = {PageNotFound}/>
 				</Switch>
 			 </Router>
