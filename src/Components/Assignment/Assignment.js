@@ -2,9 +2,10 @@ import React from 'react';
 import './Assignment.css';
 import VerificationEngine from '../VerificationEngine/VerificationEngine';
 import firebase from "../../Firebase/firebase";
-import { updateQuestionTracker, onChangeTextAnswers, onChangeSelectAnswers, getSideNavList, getQuizProgress } from './helperMethods';
+import { updateQuestionTracker, onChangeTextAnswers, onChangeSelectAnswers, getSideNavList, getQuizProgress, onBackToDashboardButtonClick } from './helperMethods';
 import QuizHeading from './QuizHeading';
 import QuestionList from './QuestionList';
+import ScoreAndButtons from './ScoreAndButtons';
 
 class Assignment extends React.Component{
 
@@ -18,6 +19,7 @@ class Assignment extends React.Component{
         this.onChangeSelectAnswers = onChangeSelectAnswers.bind(this);
         this.getSideNavList = getSideNavList.bind(this);
         this.getQuizProgress = getQuizProgress.bind(this);
+        this.onBackToDashboardButtonClick = onBackToDashboardButtonClick.bind(this);
     }
 	
 
@@ -69,6 +71,11 @@ class Assignment extends React.Component{
         const sideNavList = this.getSideNavList(questionTracker);
         const quizProgress = this.getQuizProgress(questionTracker);
 
+        const assignmentID = this.props.match.params.id;
+        const user = this.props.user;
+
+
+
         return(
         
             <div class = "assignmentContainer"> 
@@ -90,16 +97,7 @@ class Assignment extends React.Component{
                     <div className="progress-bar bg-success" role="progressbar" style={{ width: quizProgress + "%" }} aria-valuenow={quizProgress} aria-valuemin="0" aria-valuemax="100">{`${quizProgress}%`}</div>
                 </div>
 
-                <div class = "buttonContainer container">
-                    <div className = "row align-items-center">
-                        <div className = "col">
-                            <button type="button" class="btn btn-primary btn-lg" style = {{marginLeft : '15%'}} onClick = {this.onSubmit}>Submit</button>
-                        </div>
-                        <div className = "col">
-                            <button type="button" class="btn btn-secondary btn-lg" style = {{marginLeft : '15%'}}>Cancel</button>
-                        </div>
-                    </div>
-                </div>
+                <ScoreAndButtons assignmentID = {assignmentID} user = {user} onSubmit = {this.onSubmit} onBackToDashboardButtonClick = {this.onBackToDashboardButtonClick}/>
 
                 <div class = "buttonUpload">
                     <button type="button" class="btn btn-primary btn-lg">Upload</button>

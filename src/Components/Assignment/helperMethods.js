@@ -68,4 +68,8 @@ function getQuizProgress(questionTracker){
     return Math.round((answeredQuestions/totalQuestions) * 100);
 }
 
-export { updateQuestionTracker, onChangeTextAnswers, onChangeSelectAnswers, getSideNavList, getQuizProgress };
+function onBackToDashboardButtonClick(){
+    this.props.history.replace('/dashboard/');
+}
+
+export { updateQuestionTracker, onChangeTextAnswers, onChangeSelectAnswers, getSideNavList, getQuizProgress, onBackToDashboardButtonClick };
