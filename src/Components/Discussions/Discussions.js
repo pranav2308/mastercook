@@ -22,7 +22,12 @@ class Discussion extends React.Component {
 
   render() {
     let courseDescription = "Description of the course you're taking.";
-    let questionAnswers = [{}];
+    let questionAnswers = [
+      {
+        Question: "-",
+        Answer: "-"
+      }
+    ];
     let comments = ["-"];
     if (typeof this.props.currentDiscussions !== "undefined") {
       courseDescription = this.props.currentDiscussions["Description"];
@@ -37,7 +42,7 @@ class Discussion extends React.Component {
           className="app-bar"
         >
           <Tab eventKey={1} title="Description">
-            <p>{courseDescription}</p>
+            <h1>{courseDescription}</h1>
           </Tab>
 
           <Tab eventKey={2} title="Q&A">

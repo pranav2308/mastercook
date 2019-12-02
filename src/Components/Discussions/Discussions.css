@@ -25,3 +25,8 @@ i {
   font-weight: normal;
   margin-right: 40px;
 }
+
+h1 {
+  padding: 10px;
+  font-family: helvetica;
+}

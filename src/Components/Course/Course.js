@@ -26,7 +26,8 @@ class Course extends React.Component {
     let newCourse = [];
     let newCourseLessons = [];
     let newCurrent = {};
-    const courseID = this.props.match.params["id"];
+    // extract the course ID from the url
+    const courseID = this.props.location.pathname.substring(8);
     courseRef.onSnapshot(async s => {
       await s.forEach(doc => {
         let courseObj = {
