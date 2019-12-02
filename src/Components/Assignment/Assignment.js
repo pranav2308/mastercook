@@ -45,6 +45,19 @@ class Assignment extends React.Component{
         firebase.firestore.collection('QuizContent').doc(assignmentID.toString()).onSnapshot(snapshot => {
             const correctAnswers = snapshot.data().CorrectAnswers;
             const points = snapshot.data().Points;
+            const courseID = snapshot.data().CourseID;
+
+            //Change progress of the course.
+            const oldEnrolledCourses = this.props.user.enrolledCourses;
+            const newEnrolledCourses = oldEnrolledCourses.map((courseObj) => {
+                if(courseObj.courseID === courseID){
+                    const newProgress = courseObj.progress + 10;
+                    return{courseID : courseID, progress: newProgress}
+                }
+                return courseObj;
+            })
+            this.props.setUser(Object.assign(this.props.user, {enrolledCourses : newEnrolledCourses}));
+
             const userPoints = VerificationEngine(this.state.questionTracker, correctAnswers, points);
             const userID = firebase.auth.currentUser.uid;
 
