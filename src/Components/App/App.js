@@ -12,6 +12,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Homepage from "../Homepage/Homepage";
 import Messages from "../Messages/Messages";
 import Navbar from "../Navbar/Navbar";
+import Admin from "../Admin/admin";
 import CourseStudent from '../CourseStudent/CourseStudent';
 import "./App.css";
 
@@ -50,6 +51,7 @@ class App extends React.Component {
           <Route path="/settings/" component={AccountPreference} />
           <Route path="/messages" component={Messages} />
           <Route path="/assignment/:id" component={Assignment} />
+          <Route path="/admin" component={Admin} />
         </Switch>
       </Router>
     );
