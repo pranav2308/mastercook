@@ -58,7 +58,7 @@ const DashboardInstructor = (props) => {
 						</div>
 					</div>
 				</div>
-				<button type="button" class="btn btn-primary btn-lg">Analyze Performance</button>
+				<button type="button" class="btn btn-primary btn-lg" onClick = {() => {props.history.replace('/viewGrades/')}}>Analyze Performance</button>
 				{/* <div className = "row">
 					<div className = "col">
 						<h2 className = 'heading text-left'> Recommended courses </h2>
