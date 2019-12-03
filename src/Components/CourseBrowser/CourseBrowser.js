@@ -1,7 +1,8 @@
-import { any } from "prop-types";
 import React from "react";
+import { Dropdown } from "react-bootstrap";
 import firebase from "../../Firebase/firebase";
-import "../CourseBrowser/CourseBrowser.css";
+import "./CourseBrowser.css";
+import CourseList from "./CourseList";
 
 let courseRef = firebase.firestore.collection("Courses");
 
@@ -12,15 +13,16 @@ class CourseBrowser extends React.Component {
       courses: [],
       courseNames: [],
       courseDesc: [],
-      searchResults: any
+      searchResults: []
     };
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  componentDidMount(event) {
+  componentDidMount() {
     let newCourse = [];
     let newCourseName = [];
     let newCourseDesc = [];
+    let newSearchResults = [];
     courseRef.onSnapshot(async s => {
       await s.forEach(doc => {
         newCourse.push({
@@ -40,13 +42,22 @@ class CourseBrowser extends React.Component {
         newCourseName.push(doc.data()["Name"]);
         newCourseDesc.push(doc.data()["Description"]);
       });
+
       this.setState({
         courses: newCourse,
         courseNames: newCourseName,
         courseDesc: newCourseDesc
       });
+
+      if (this.state["courseNames"].length > 0) {
+        newSearchResults = this.searchForMatches();
+      }
+
+      this.setState({ searchResults: newSearchResults });
+      //console.log(this.state.searchResults);
     });
   }
+
   componentDidUpdate() {
     if (this.state["courseNames"].length > 0) {
       let searchResults = this.searchForMatches();
@@ -80,7 +91,43 @@ class CourseBrowser extends React.Component {
   render() {
     return (
       <div className="course-browser-container">
-        <p> test </p>
+        <div className="options-container">
+          <div className="sort-by-container">
+            <Dropdown>
+              <Dropdown.Toggle variant="light" id="dropdown-basic">
+                Sort By
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Most relevant</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Most recent</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Name (A->Z)</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Name (Z->A)</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <div className="categories-container">
+            <Dropdown>
+              <Dropdown.Toggle variant="light" id="dropdown-basic">
+                Categories
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">All</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Indian</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Thai</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Chinese</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
+        <div className="result-container">
+          {" "}
+          <CourseList
+            searchResults={this.state.searchResults}
+            user={this.props.user}
+          />
+        </div>
       </div>
     );
   }

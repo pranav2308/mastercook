@@ -2,6 +2,7 @@ import React from 'react';
 import './Dashboard.css';
 import firebase from "../../Firebase/firebase";
 import DashboardInstructor from './DashboardInstructor';
+import DashboardAdmin from './DashboardAdmin';
 
 import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement, routeToCoursePage } from './helperMethods';
 
@@ -56,6 +57,9 @@ class Dashboard extends React.Component{
 			return <DashboardInstructor firstName = {firstName} accountType = {accountType} {...this.props}/>
 		}
 
+		if(accountType === 'Admin'){
+			return <DashboardAdmin />
+		}
 		const pizzaImgUrl = "http://www.spoonforkbacon.com/wordpress/wp-content/uploads/2017/02/fall_pizza_recipe-800x1066.jpg";
 
 		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList, this.routeToCoursePage);

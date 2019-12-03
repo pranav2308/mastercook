@@ -38,10 +38,12 @@ class Homepage extends Component {
 
   emailOnChange(event) {
     this.setState({ userEmail: event.target.value });
+    // console.log(this.state.userEmail);
   }
 
   passwordOnChange(event) {
     this.setState({ userPassword: event.target.value });
+    // console.log(this.state.userPassword);
   }
 
   onLogin = event => {
@@ -97,6 +99,7 @@ class Homepage extends Component {
           });
         alert("You Are Signed In!");
       })
+
       .catch(error => {
         let errorCode = error.code;
         let errorMessage = error.message;
@@ -156,7 +159,6 @@ class Homepage extends Component {
   }
 
   accountTypeOnChange(event) {
-    console.log("");
     this.setState({ accountType: event.target.value });
   }
 
@@ -177,76 +179,77 @@ class Homepage extends Component {
       alert("Please Confirm Password.");
     } else if (this.state.userPassword != this.state.userConfirmedPassword) {
       alert("Password and Confirmation Do Not Match.");
-    }
-
-    firebase.auth
-      .createUserWithEmailAndPassword(
-        this.state.userEmail,
-        this.state.userPassword
-      )
-      .then(user => {
-        const {
-          userFirstName,
-          userLastName,
-          accountType,
-          userEmail
-        } = this.state;
-        firebase.database
-          .ref("users/" + user.user.uid)
-          .set({
-            FirstName: userFirstName,
-            LastName: userLastName,
-            AccountType: accountType,
-            Email: userEmail,
-            EnrolledCourses: [
-              { courseID: 1, progress: 10 },
-              { courseID: 2, progress: 49 },
-              { courseID: 3, progress: 95 }
-            ],
-            FontSize: "12",
-            ProfilePic: "",
-            Language: "Eng",
-            ShareProgress: false,
-            Messages: []
-          })
-          .then(() => {
-            const userObj = {
-              firstName: userFirstName,
-              lastName: userLastName,
-              accountType: accountType,
-              email: userEmail,
-              enrolledCourses: [],
-              fontSize: "12",
-              profilePic: "",
-              language: "Eng",
-              shareProgress: false,
-              messages: []
-            };
-            this.props.setUser(userObj);
-            this.setState({
-              signedIn: true,
-              error: false,
-              message: "",
-              register: false
+    } else {
+      firebase.auth
+        .createUserWithEmailAndPassword(
+          this.state.userEmail,
+          this.state.userPassword
+        )
+        .then(user => {
+          const {
+            userFirstName,
+            userLastName,
+            accountType,
+            userEmail
+          } = this.state;
+          firebase.database
+            .ref("users/" + user.user.uid)
+            .set({
+              FirstName: userFirstName,
+              LastName: userLastName,
+              AccountType: accountType,
+              Email: userEmail,
+              EnrolledCourses: [
+                { courseID: 1, progress: 10 },
+                { courseID: 2, progress: 49 },
+                { courseID: 3, progress: 95 }
+              ],
+              FontSize: "12",
+              ProfilePic: "",
+              Language: "Eng",
+              ShareProgress: false,
+              Messages: []
+            })
+            .then(() => {
+              const userObj = {
+                firstName: userFirstName,
+                lastName: userLastName,
+                accountType: accountType,
+                email: userEmail,
+                enrolledCourses: [],
+                fontSize: "12",
+                profilePic: "",
+                language: "Eng",
+                shareProgress: false,
+                messages: []
+              };
+              this.props.setUser(userObj);
+              this.setState({
+                signedIn: true,
+                error: false,
+                message: "",
+                register: false
+              });
             });
-          });
-      })
-      .catch(error => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
+        })
 
-        this.setState({ error: true, message: errorMessage });
+        .catch(error => {
+          let errorCode = error.code;
+          let errorMessage = error.message;
 
-        if (errorCode === "auth/email-already-in-use") {
-          alert("Email Already In Use.");
-        }
-        if (errorCode === "auth/invalid-email") {
-          alert("Invalid Email.");
-        }
-        if (errorCode === "auth/weak-password") {
-          alert("Weak Password.");
-        }
-      });
+          this.setState({ error: true, message: errorMessage });
+
+          if (errorCode === "auth/email-already-in-use") {
+            alert("Email Already In Use.");
+          }
+          if (errorCode === "auth/invalid-email") {
+            alert("Invalid Email.");
+          }
+          if (errorCode === "auth/weak-password") {
+            alert("Weak Password.");
+          }
+        });
+    }
   }
 
   render() {

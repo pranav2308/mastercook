@@ -1,0 +1,11 @@
+.tableContainer{
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-right: 5%;   
+    background-color: seagreen;
+}
+
+.submitButton{
+    position: absolute;
+    right: 10%;    
+}
