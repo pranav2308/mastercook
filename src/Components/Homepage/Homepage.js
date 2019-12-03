@@ -199,11 +199,7 @@ class Homepage extends Component {
               LastName: userLastName,
               AccountType: accountType,
               Email: userEmail,
-              EnrolledCourses: [
-                { courseID: 1, progress: 10 },
-                { courseID: 2, progress: 49 },
-                { courseID: 3, progress: 95 }
-              ],
+              EnrolledCourses: [],
               FontSize: "12",
               ProfilePic: "",
               Language: "Eng",
