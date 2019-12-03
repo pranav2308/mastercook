@@ -1,6 +1,10 @@
 import React from 'react';
 import './Dashboard.css';
-import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement } from './helperMethods';
+import firebase from "../../Firebase/firebase";
+import DashboardInstructor from './DashboardInstructor';
+import DashboardAdmin from './DashboardAdmin';
+
+import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement, routeToCoursePage } from './helperMethods';
 
 
 class Dashboard extends React.Component{
@@ -13,6 +17,8 @@ class Dashboard extends React.Component{
 		}
 		this.setEnrolledCourseList = setEnrolledCourseList.bind(this);
 		this.setAnnouncementObj = setAnnouncementObj.bind(this);
+		this.routeToCoursePage = routeToCoursePage.bind(this);
+		this.getEnrolledCoursesRenderElement = getEnrolledCoursesRenderElement.bind(this);
 		
 	}
 	
@@ -24,17 +30,45 @@ class Dashboard extends React.Component{
 		}
 		this.setAnnouncementObj();
 	}
+
+	onClickEnrollCourse = (courseID) => {
+
+		let {enrolledCourses} = this.props.user;
+		const userID = firebase.auth.currentUser.uid;
+		
+		enrolledCourses.push({courseID : courseID, progress : 0});
+		
+		new Promise((resolve, reject) => {
+			resolve(firebase.database.ref('users/' + userID).update({EnrolledCourses : enrolledCourses}));	
+		})
+		.then(() => {
+			
+			this.setEnrolledCourseList(enrolledCourses);
+			this.props.setUser(Object.assign(this.props.user, {enrolledCourses : enrolledCourses}));
+		})
+		.catch(error => console.log(error));
+		
+	}
 	render(){		
 
-		const chickenImgUrl = "https://www.foodrepublic.com/wp-content/uploads/2014/06/cachacachicken_0.jpg";
+		const{ firstName, accountType } = this.props.user;	
 
-		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList);
+		if(accountType === 'Instructor'){
+			return <DashboardInstructor firstName = {firstName} accountType = {accountType} {...this.props}/>
+		}
+
+		if(accountType === 'Admin'){
+			return <DashboardAdmin />
+		}
+		const pizzaImgUrl = "http://www.spoonforkbacon.com/wordpress/wp-content/uploads/2017/02/fall_pizza_recipe-800x1066.jpg";
+
+		const EnrolledCoursesRenderElement = getEnrolledCoursesRenderElement(this.state.enrolledCourseList, this.routeToCoursePage);
 
 		const announcementList = getAnnouncementRenderElement(this.state.announcementObj);
 
-		const assignmentList = getAssignmentRenderElement(this.state.enrolledCourseList);
+		const assignmentList = getAssignmentRenderElement(this.state.enrolledCourseList, this.props.match);
 		
-		const{ firstName, accountType } = this.props.user;	
+		
 		return(
 			<div className = "dashboard-container">
 				<div class = "sidenav-container">
@@ -71,12 +105,12 @@ class Dashboard extends React.Component{
 
 						<div className = "col">
 							<div className = "card card-addon">
-							  <img src= {chickenImgUrl} class="card-img-top" alt="Tofu dishes"/>
+							  <img src= {pizzaImgUrl} class="card-img-top" alt="pizza"/>
 							  <div class="card-body">
-							    <h5 class="card-title">Chicken recipes</h5>
-							    <p class="card-text">Cut chicken and eat it!</p>
-							     <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Kim jong-un</p>
-							    <a class="btn btn-primary">Enroll Course!</a>
+							    <h5 class="card-title">MC004: Pizza 101</h5>
+							    <p class="card-text">Cook homemade delicious pizza. It's easy, fast and healthy!</p>
+							     <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Gordon Ramsey</p>
+							    <a class="btn btn-primary" onClick = {() => this.onClickEnrollCourse(4)}>Enroll Course!</a>
 							  </div>
 							</div>
 						</div>

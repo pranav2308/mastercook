@@ -1,0 +1,11 @@
+.form-group.admin-group{
+    height: 7%;
+    width: 30%;
+}
+
+.tableContainer{
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-right: 5%;   
+    background-color: seagreen;
+}

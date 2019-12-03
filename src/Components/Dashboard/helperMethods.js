@@ -1,4 +1,6 @@
 import React from "react";
+import CourseCard from './CourseCard';
+import { NavLink } from "react-router-dom";
 import firebase from "../../Firebase/firebase";
 
 async function setEnrolledCourseList(enrolledCourses) {
@@ -18,51 +20,27 @@ async function setEnrolledCourseList(enrolledCourses) {
   this.setState({ enrolledCourseList: enrolledCourseList });
 }
 
-function getEnrolledCoursesRenderElement(enrolledCourseList) {
+function routeToCoursePage(courseID){
+	this.props.history.replace('/course/'.concat(courseID.toString()));
+}
+
+function getEnrolledCoursesRenderElement(enrolledCourseList, routeToCoursePage) {
   if (enrolledCourseList.length !== 0) {
     const courseList = enrolledCourseList.map(enrolledCourseObj => {
       const {
+      	ID,
         ImageUrl,
-        DescriptionText,
+        Description,
         InstructorName,
         Name,
         progress
       } = enrolledCourseObj;
       return (
-        <div className="col">
-          <div className="card card-addon">
-            <img
-              src={ImageUrl}
-              class="card-img-top"
-              alt="Tofu dishes"
-              height="200"
-            />
-            <div class="card-body">
-              <h5 class="card-title">{Name}</h5>
-              <p class="card-text">{DescriptionText}</p>
-              <p class="card-text">
-                <span className="font-weight-bold">Intructor:</span>{" "}
-                {InstructorName}
-              </p>
-              <a class="btn btn-primary">Continue course</a>
-            </div>
-            <div class="progress">
-              <div
-                className="progress-bar bg-success progress-bar-addon"
-                role="progressbar"
-                aria-valuenow={progress}
-                style={{ width: progress + "%" }}
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >{`${progress}%`}</div>
-            </div>
-          </div>
-        </div>
+        <CourseCard ImageUrl = {ImageUrl} ID = {ID} Name = {Name} InstructorName = {InstructorName} Description = {Description} progress = {progress} routeToCoursePage = {routeToCoursePage}/>
       );
     });
     return courseList;
   }
-
   return (
     <div className="col">
       <p className="font-weight-light font-italic text-left">
@@ -73,12 +51,14 @@ function getEnrolledCoursesRenderElement(enrolledCourseList) {
   );
 }
 
-function getAssignmentRenderElement(enrolledCourseList) {
+function getAssignmentRenderElement(enrolledCourseList, match) {
+  
+  const url = match.url;
   const assignmentRenderElement = enrolledCourseList.map(enrolledCourseObj => {
     const { Assignments } = enrolledCourseObj;
     if (Assignments) {
       const assignmentList = Assignments.map(assignmentID => (
-        <li> {`Assignment ${assignmentID}`}</li>
+        <NavLink className="nav-link" to= {'/assignment/'.concat(assignmentID.toString())}> {`Assignment ${assignmentID}`}</NavLink>
       ));
       return (
         <div>
@@ -134,5 +114,6 @@ export {
   getEnrolledCoursesRenderElement,
   getAssignmentRenderElement,
   setAnnouncementObj,
-  getAnnouncementRenderElement
+  getAnnouncementRenderElement,
+  routeToCoursePage
 };

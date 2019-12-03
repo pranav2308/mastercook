@@ -1,0 +1,60 @@
+
+.resultCardImage{
+	width: 200px;
+	height: 200px;
+}
+.card {
+	background-color:whitesmoke;
+}
+.categories-container {
+  order: 2;
+  height: 40px;
+  width: 200px;
+}
+.sort-by-container {
+  order: 1;
+  height: 40px;
+  width: 200px;
+}
+.tableStyle {
+  height: 300px;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bigHeadingStyle {
+  color: #7a653f;
+  font-weight: bold;
+  font-size: 350%;
+}
+.test-button {
+  border: red solid 2px;
+  height: 100px;
+  width: 200px;
+}
+.course-browser-container {
+  height: 100vh;
+  width: 100vw;
+  display:flex; 
+  justify-content: center;
+  align-items: center;
+  position: relative; 
+}
+.result-container{
+  height: 70%;
+  width: 80%;
+  position: absolute;
+}
+
+.options-container {
+  padding-left: 20px;
+  position: absolute; 
+  display: flex; 
+  top: 0;
+  height: 15%;
+  width: 100%;
+  align-items: flex-end; 
+  justify-content: space-around;
+}
+
+
