@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form , Dropdown, DropdownButton} from "react-bootstrap";
 import firebase from '../../Firebase/firebase';
-import './ap.css';
+import './AccountPreference.css';
 import {Redirect} from "react-router-dom";
 
 let defaultPic = "https://cdn0.iconfinder.com/data/icons/user-collection-4/512/user-512.png"

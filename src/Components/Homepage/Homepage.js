@@ -97,7 +97,7 @@ class Homepage extends Component {
               register: false
             });
           });
-        alert("You Are Signed In!");
+        // alert("You Are Signed In!");
       })
 
       .catch(error => {
