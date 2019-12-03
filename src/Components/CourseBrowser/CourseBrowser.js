@@ -1,8 +1,12 @@
-import React from "react";
-import { Dropdown } from "react-bootstrap";
-import firebase from "../../Firebase/firebase";
-import "./CourseBrowser.css";
-import CourseList from "./CourseList";
+import React from 'react';
+import {Dropdown} from 'react-bootstrap';
+import firebase from '../../Firebase/firebase';
+
+import './CourseBrowser.css';
+import CourseItem from './CourseItem';
+import CourseList from './CourseList';
+import SearchEngine from '../SearchEngine/SearchEngine';
+import { any } from 'prop-types';
 
 let courseRef = firebase.firestore.collection("Courses");
 
@@ -17,6 +21,7 @@ class CourseBrowser extends React.Component {
     };
     this.componentDidMount = this.componentDidMount.bind(this);
   }
+
 
   componentDidMount() {
     let newCourse = [];
@@ -90,13 +95,14 @@ class CourseBrowser extends React.Component {
 
   render() {
     return (
-      <div className="course-browser-container">
-        <div className="options-container">
-          <div className="sort-by-container">
-            <Dropdown>
-              <Dropdown.Toggle variant="light" id="dropdown-basic">
-                Sort By
-              </Dropdown.Toggle>
+
+		<div className="course-browser-container">
+			<div className="options-container">
+				<div className="sort-by-container">
+					<Dropdown>
+						<Dropdown.Toggle variant="light" id="dropdown-basic">
+							Sort By
+						</Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">Most relevant</Dropdown.Item>
