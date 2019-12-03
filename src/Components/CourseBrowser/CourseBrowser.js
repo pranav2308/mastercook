@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dropdown} from 'react-bootstrap';
 import firebase from '../../Firebase/firebase';
+
 import './CourseBrowser.css';
 import CourseItem from './CourseItem';
 import CourseList from './CourseList';
@@ -20,6 +21,7 @@ class CourseBrowser extends React.Component {
     };
     this.componentDidMount = this.componentDidMount.bind(this);
   }
+
 
   componentDidMount() {
     let newCourse = [];
@@ -88,12 +90,14 @@ class CourseBrowser extends React.Component {
     }
 
     // remove duplicates from the result;
+
 	const retVal = [...new Set(result)];
     return retVal;
   }
 
   render() {
     return (
+
 		<div className="course-browser-container">
 			<div className="options-container">
 				<div className="sort-by-container">

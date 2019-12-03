@@ -1,0 +1,39 @@
+
+        .container{
+width: 50%;
+
+        }
+
+.card-addon{
+  height: 70%;
+  width: 70%;
+  margin-bottom: 10%;
+  margin-top: 10%
+}
+
+.heading-addon{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.FontSizeLabel{
+  margin-right: 2%;
+}
+
+.LanguageLabel{
+  margin-right: 2%;
+}
+
+.ShareProgressLabel{
+  margin-right: 2%;
+  margin-bottom: 10%
+}
+
+.Button1{
+  margin-right: 10%;
+}
+.Button2{
+  margin-right: 10%;
+  margin-bottom: 20%;
+
+}
