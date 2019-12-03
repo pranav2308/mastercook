@@ -26,7 +26,7 @@ function routeToCoursePage(courseID){
 
 function getEnrolledCoursesRenderElement(enrolledCourseList, routeToCoursePage) {
   if (enrolledCourseList.length !== 0) {
-    const courseList = enrolledCourseList.map(enrolledCourseObj => {
+    const courseList = enrolledCourseList.map((enrolledCourseObj, index) => {
       const {
       	ID,
         ImageUrl,
@@ -36,7 +36,7 @@ function getEnrolledCoursesRenderElement(enrolledCourseList, routeToCoursePage) 
         progress
       } = enrolledCourseObj;
       return (
-        <CourseCard ImageUrl = {ImageUrl} ID = {ID} Name = {Name} InstructorName = {InstructorName} Description = {Description} progress = {progress} routeToCoursePage = {routeToCoursePage}/>
+        <CourseCard key={index} ImageUrl = {ImageUrl} ID = {ID} Name = {Name} InstructorName = {InstructorName} Description = {Description} progress = {progress} routeToCoursePage = {routeToCoursePage}/>
       );
     });
     return courseList;
@@ -54,15 +54,15 @@ function getEnrolledCoursesRenderElement(enrolledCourseList, routeToCoursePage) 
 function getAssignmentRenderElement(enrolledCourseList, match) {
   
   const url = match.url;
-  const assignmentRenderElement = enrolledCourseList.map(enrolledCourseObj => {
+  const assignmentRenderElement = enrolledCourseList.map((enrolledCourseObj,index) => {
     const { Assignments } = enrolledCourseObj;
     if (Assignments) {
-      const assignmentList = Assignments.map(assignmentID => (
-        <NavLink className="nav-link" to= {'/assignment/'.concat(assignmentID.toString())}> {`Assignment ${assignmentID}`}</NavLink>
+      const assignmentList = Assignments.map((assignmentID,index) => (
+        <NavLink key={index} className="nav-link" to= {'/assignment/'.concat(assignmentID.toString())}> {`Assignment ${assignmentID}`}</NavLink>
       ));
       return (
-        <div>
-          <h4> {enrolledCourseObj.Name} </h4>
+        <div key={index}>
+          <h4 key={index}> {enrolledCourseObj.Name} </h4>
           {assignmentList}
         </div>
       );

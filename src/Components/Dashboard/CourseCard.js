@@ -15,7 +15,7 @@ const CourseCard = (props) => {
             />
             <div class="card-body">
               <h5 class="card-title">{`MC00${ID}: ${Name}`}</h5>
-              <p class="card-text">{Description}</p>
+              <i class="card-text">{Description}</i>
               <p class="card-text">
                 <span className="font-weight-bold">Intructor:</span>{" "}
                 {InstructorName}
