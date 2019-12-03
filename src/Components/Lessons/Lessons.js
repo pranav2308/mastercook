@@ -6,57 +6,67 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%"
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
+class Lessons extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleLessonClick = this.handleLessonClick.bind(this);
   }
-}));
 
-export default function Lessons() {
-  const classes = useStyles();
-  const lessonsArr = [
-    [
-      "Lesson1",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-    ],
-    [
-      "Lesson2",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-    ],
-    [
-      "Lesson3",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-    ],
-    [
-      "Lesson4",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-    ],
-    [
-      "Lesson5",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex sit amet blandit leo lobortis eget."
-    ]
-  ];
-  console.log(lessonsArr);
-  return (
-    <div className={classes.root}>
-      {lessonsArr.map(lesson => (
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
+  handleLessonClick(lesson, index) {
+    // pass back the video ID of clicked lesson to parent
+    let vidID = "G-Fg7l7G1zw";
+    if (typeof lesson["videoID"] !== "undefined") {
+      vidID = lesson["videoID"];
+    }
+    this.props.callbackFromParent(vidID);
+  }
+
+  render() {
+    if (typeof this.props.currentCourse["lessons"] !== "undefined") {
+    }
+    const useStyles = makeStyles(theme => ({
+      root: {
+        width: "100%"
+      },
+      heading: {
+        fontSize: theme.typography.pxToRem(15),
+        fontWeight: theme.typography.fontWeightRegular
+      }
+    }));
+
+    let courseLessons = [];
+
+    if (typeof this.props.currentCourse["lessons"] !== "undefined") {
+      courseLessons = this.props.currentCourse["lessons"];
+    }
+
+    return (
+      <div className={useStyles.root}>
+        {courseLessons.map((lesson, index) => (
+          <ExpansionPanel
+            key={index}
+            onClick={function(e) {
+              this.handleLessonClick(lesson, index);
+            }.bind(this)}
           >
-            <Typography className={classes.heading}>{lesson[0]}</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>{lesson[1]}</Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      ))}
-    </div>
-  );
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+              key={index}
+            >
+              <Typography className={useStyles.heading} key={index}>
+                {lesson["lessonName"]}
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails key={index}>
+              <Typography key={index}>{lesson["descriptionText"]} </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        ))}
+      </div>
+    );
+  }
 }
+
+export default Lessons;

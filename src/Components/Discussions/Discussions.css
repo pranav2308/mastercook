@@ -1,4 +1,32 @@
 .app-bar {
-    border-radius: 5;
-    box-shadow: sandybrown;
+  border-radius: 5;
+  background-color: #eeeeee;
+}
+
+.tab-container {
+  height: 100%;
+  border-radius: 5;
+  overflow-y: scroll;
+  width: 100%;
+  background-color: #eeeeee;
+}
+
+b {
+  padding: 10px;
+  font-family: helvetica;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+i {
+  padding: 10px;
+  font-family: helvetica;
+  font-size: 18px;
+  font-weight: normal;
+  margin-right: 40px;
+}
+
+h1 {
+  padding: 10px;
+  font-family: helvetica;
 }
