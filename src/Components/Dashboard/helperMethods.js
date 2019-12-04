@@ -36,7 +36,7 @@ function getEnrolledCoursesRenderElement(enrolledCourseList, routeToCoursePage) 
         progress
       } = enrolledCourseObj;
       return (
-        <CourseCard key={index} ImageUrl = {ImageUrl} ID = {ID} Name = {Name} InstructorName = {InstructorName} Description = {Description} progress = {progress} routeToCoursePage = {routeToCoursePage}/>
+        <CourseCard key={index} ImageUrl = {ImageUrl} ID = {ID} Name = {Name} InstructorName = {InstructorName} Description = {Description} progress = {progress} routeToCoursePage = {routeToCoursePage} typeOfCard = {"Enrollment"}/>
       );
     });
     return courseList;
@@ -109,11 +109,108 @@ function getAnnouncementRenderElement(announcementObj) {
   }
 }
 
+function getRecommendedCourseID(enrolledCourses){
+
+  // console.log(enrolledCourses);
+  const totalRecommendedCourses = 2;
+  const totalEnrolledcourses = enrolledCourses.length;
+  
+  const totalCourses = 4;
+  let recommendedCourses = [];
+
+  for(let databaseIndex = 0; databaseIndex <= totalCourses - 1; databaseIndex++){
+    
+    if(recommendedCourses.length < totalRecommendedCourses){
+
+      const recommendedCourseID = databaseIndex + 1;
+      let courseEnrolled = false;
+      for(let enrolledCourse of enrolledCourses){
+        if(enrolledCourse.courseID === recommendedCourseID){
+          courseEnrolled = true;
+          break;
+        }
+      }
+      if(!courseEnrolled){
+        recommendedCourses.push(recommendedCourseID);
+      }
+
+    }
+    else{
+      break;
+    }
+  }
+
+  return recommendedCourses;
+}
+
+
+async function setRecommendedCourseList(recommendedCourseIDs){
+
+  const promises = recommendedCourseIDs.map(recommendedCourseID => {
+    return new Promise((resolve, reject) => {
+      firebase.firestore
+        .collection("Courses")
+        .doc(recommendedCourseID.toString())
+        .onSnapshot(snapshot => {
+          let databaseObj = snapshot.data();
+          resolve(databaseObj);
+        });
+    });
+  });
+  const recommendedCourseList = await Promise.all(promises);
+  //console.log('recommendedCourseList: ', recommendedCourseList);
+  this.setState({ recommendedCourseList: recommendedCourseList});
+}
+
+function getRecommendedRenderElement(recommendedCourseList, onClickEnrollCourse){
+
+  const courseList = recommendedCourseList.map((recommendedCourseObj, index) => {
+      const {
+        ID,
+        ImageUrl,
+        Description,
+        InstructorName,
+        Name
+      } = recommendedCourseObj;
+      return (
+        <CourseCard key={index} ImageUrl = {ImageUrl} ID = {ID} Name = {Name} InstructorName = {InstructorName} Description = {Description} onClickEnrollCourse = {onClickEnrollCourse} typeOfCard = {"Recommended"}/>
+      );
+    });
+    return courseList;
+}
+
+function onClickEnrollCourse(courseID){
+
+    const _this = this;
+    let {enrolledCourses} = this.props.user;
+    const userID = firebase.auth.currentUser.uid;
+    
+    enrolledCourses.push({courseID : courseID, progress : 0});
+    
+    new Promise((resolve, reject) => {
+      resolve(firebase.database.ref('users/' + userID).update({EnrolledCourses : enrolledCourses}));  
+    })
+    .then(function(){
+      
+      this.setEnrolledCourseList(enrolledCourses);
+      const recommendedCourseID = getRecommendedCourseID(enrolledCourses);
+      this.setRecommendedCourseList(recommendedCourseID)
+      this.props.setUser(Object.assign(this.props.user, {enrolledCourses : enrolledCourses}));
+    }.bind(_this))
+    .catch(error => console.log(error));
+    
+  }
+
+
 export {
   setEnrolledCourseList,
   getEnrolledCoursesRenderElement,
   getAssignmentRenderElement,
   setAnnouncementObj,
   getAnnouncementRenderElement,
-  routeToCoursePage
+  routeToCoursePage,
+  getRecommendedCourseID,
+  setRecommendedCourseList,
+  getRecommendedRenderElement,
+  onClickEnrollCourse
 };

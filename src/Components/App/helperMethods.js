@@ -77,5 +77,6 @@ function searchForMatches(userSearchString, newCourse) {
     return retVal;
 }
 
+
 export { setUser, flushUser, setSearchResult, searchForMatches };
 

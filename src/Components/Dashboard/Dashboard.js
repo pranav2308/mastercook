@@ -4,7 +4,16 @@ import firebase from "../../Firebase/firebase";
 import DashboardInstructor from './DashboardInstructor';
 import DashboardAdmin from './DashboardAdmin';
 
-import { setEnrolledCourseList, getEnrolledCoursesRenderElement, getAssignmentRenderElement, setAnnouncementObj, getAnnouncementRenderElement, routeToCoursePage } from './helperMethods';
+import { setEnrolledCourseList, 
+	getEnrolledCoursesRenderElement, 
+	getAssignmentRenderElement,
+	setAnnouncementObj, 
+	getAnnouncementRenderElement, 
+	routeToCoursePage, 
+	getRecommendedCourseID,
+	setRecommendedCourseList,
+	getRecommendedRenderElement,
+	onClickEnrollCourse} from './helperMethods';
 
 
 class Dashboard extends React.Component{
@@ -13,13 +22,16 @@ class Dashboard extends React.Component{
 		super(props);
 		this.state = {
 			enrolledCourseList : [],
+			recommendedCourseList: [],
 			announcementObj : null
 		}
 		this.setEnrolledCourseList = setEnrolledCourseList.bind(this);
 		this.setAnnouncementObj = setAnnouncementObj.bind(this);
 		this.routeToCoursePage = routeToCoursePage.bind(this);
 		this.getEnrolledCoursesRenderElement = getEnrolledCoursesRenderElement.bind(this);
-		
+		this.getRecommendedRenderElement = getRecommendedRenderElement.bind(this);
+		this.setRecommendedCourseList = setRecommendedCourseList.bind(this);
+		this.onClickEnrollCourse = onClickEnrollCourse.bind(this);
 	}
 	
 	componentDidMount(){
@@ -28,26 +40,9 @@ class Dashboard extends React.Component{
 		if(enrolledCourses){
 			this.setEnrolledCourseList(enrolledCourses);
 		}
+		const recommendedCourseID = getRecommendedCourseID(enrolledCourses);
+		this.setRecommendedCourseList(recommendedCourseID)
 		this.setAnnouncementObj();
-	}
-
-	onClickEnrollCourse = (courseID) => {
-
-		let {enrolledCourses} = this.props.user;
-		const userID = firebase.auth.currentUser.uid;
-		
-		enrolledCourses.push({courseID : courseID, progress : 0});
-		
-		new Promise((resolve, reject) => {
-			resolve(firebase.database.ref('users/' + userID).update({EnrolledCourses : enrolledCourses}));	
-		})
-		.then(() => {
-			
-			this.setEnrolledCourseList(enrolledCourses);
-			this.props.setUser(Object.assign(this.props.user, {enrolledCourses : enrolledCourses}));
-		})
-		.catch(error => console.log(error));
-		
 	}
 	render(){		
 
@@ -68,6 +63,10 @@ class Dashboard extends React.Component{
 
 		const assignmentList = getAssignmentRenderElement(this.state.enrolledCourseList, this.props.match);
 		
+		
+		// console.log('recommendedCourseID: ', recommendedCourseID)
+		const recommendedCourseRenderElement = getRecommendedRenderElement(this.state.recommendedCourseList, this.onClickEnrollCourse);
+		// console.log(recommendedCourseID);
 		
 		return(
 			<div className = "dashboard-container">
@@ -103,17 +102,7 @@ class Dashboard extends React.Component{
 
 					<div className = "row">
 
-						<div className = "col">
-							<div className = "card card-addon">
-							  <img src= {pizzaImgUrl} class="card-img-top" alt="pizza"/>
-							  <div class="card-body">
-							    <h5 class="card-title">MC004: Pizza 101</h5>
-							    <p class="card-text">Cook homemade delicious pizza. It's easy, fast and healthy!</p>
-							     <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Gordon Ramsey</p>
-							    <a class="btn btn-primary" onClick = {() => this.onClickEnrollCourse(4)}>Enroll Course!</a>
-							  </div>
-							</div>
-						</div>
+						{recommendedCourseRenderElement}
 
 					</div>
 					
