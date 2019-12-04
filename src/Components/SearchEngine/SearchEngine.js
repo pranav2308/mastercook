@@ -1,20 +1,23 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import "../SearchEngine/SearchEngine.css";
 
 class SearchEngine extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { userSearchString: "" };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ userSearchString: event.target.value });
   }
 
   render() {
+    // console.log(this.props);
+    // console.log('In search engine')
     return (
       <form className="form-inline my-2 my-lg-0">
         <input
@@ -22,12 +25,10 @@ class SearchEngine extends Component {
           type="search"
           placeholder="Find Courses"
           aria-label="Search"
-          value={this.state.value}
+          value={this.state.userSearchString}
           onChange={this.handleChange}
         />
-        <NavLink className="nav-link" to={`/courseBrowser/${this.state.value}`}>
-          Search <span className="sr-only">(current)</span>
-        </NavLink>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick = {() => {this.props.setSearchResult(this.state.userSearchString, this.props.history.push)}}>Search</button>
       </form>
     );
   }
