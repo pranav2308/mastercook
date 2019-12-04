@@ -40,7 +40,6 @@ class QuizHeading extends React.Component{
 		            Quiz Name : {quizName}<br/>
 		            Assignment Info : Assignment No. {assignmentID} <br/>
 		            No. of Questions : {totalQuestions} <br/>
-		            Attempts : {attempts} <br/>
 		            Maximum Marks : {maximumMarks}
 		        </p>
 		    </div>
