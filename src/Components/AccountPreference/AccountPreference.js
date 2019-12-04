@@ -78,6 +78,8 @@ class AccountPreference extends Component {
 			LastName: ln,
 			Email: em
 		});
+		this.props.setUser(Object.assign(this.props.user, {firstName : fn, lastName : ln}));
+		this.props.history.replace('/dashboard/')
 	}
 
 	progressOnChange(event){
@@ -185,8 +187,8 @@ class AccountPreference extends Component {
 					<div class="Progress">
 						<label className="ProgressLabel">Progress </label>
 						<select id="shareProgress" onChange={this.progressOnChange}>
-							<option>Only me</option>
 							<option>Public</option>
+							<option>Only me</option>
 						</select>
 					</div>
 

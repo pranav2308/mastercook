@@ -46,7 +46,7 @@ class Dashboard extends React.Component{
 	}
 	render(){		
 
-		const{ firstName, accountType } = this.props.user;	
+		const{ firstName, lastName, accountType } = this.props.user;	
 
 		if(accountType === 'Instructor'){
 			return <DashboardInstructor firstName = {firstName} accountType = {accountType} {...this.props}/>
@@ -77,7 +77,7 @@ class Dashboard extends React.Component{
 				<div className = "main-container container">
 					<div className = "row">
 						<div className = "col">
-							<h2 className = 'heading text-left'> {`Welcome ${firstName}`}</h2>
+							<h2 className = 'heading text-left'> {`Welcome ${firstName} ${lastName}`}</h2>
 						</div>
 					</div>
 					<div className = "row">
