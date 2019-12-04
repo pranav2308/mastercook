@@ -33,7 +33,7 @@ class CourseList extends Component {
                 if(index === 0){
                     // console.log('Pushing result: ', result);
                     courseArr.push(<CourseItem name={result.name} description={result.description}
-                    duration={result.duration} user={this.props.user} imgUrl = {result.imgUrl}/>);
+                    duration={result.duration}  imgUrl = {result.imgUrl} rating = {result.rating} courseID = {result.id} {...this.props}/>);
                 
                     courseArr.push();    
                 }

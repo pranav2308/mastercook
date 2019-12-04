@@ -45,7 +45,7 @@ class CourseBrowser extends React.Component {
           </Dropdown>
         </div>
       </div>
-      <div className="result-container"> <CourseList searchResults={this.props.searchResults} user={this.props.user}/></div>
+      <div className="result-container"> <CourseList searchResults={this.props.searchResults} user={this.props.user} setUser = {this.props.setUser} history = {this.props.history}/></div>
     </div>
     );
   }

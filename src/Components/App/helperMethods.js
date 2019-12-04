@@ -13,7 +13,7 @@ function flushUser(emptyUser){
 
 function setSearchResult(userSearchString, replaceToCourseBrowser){
 
-	console.log('setSearchResult is getting called!');
+	// console.log('setSearchResult is getting called!');
 	const _this = this;
 	// let courseRef = firebase.firestore.collection("Courses");
 
@@ -37,7 +37,8 @@ function setSearchResult(userSearchString, replaceToCourseBrowser){
 	          quizList: doc.data()["QuizList"],
 	          studentList: doc.data()["StudentList"],
 	          syllabus: doc.data()["Syllabus"],
-	          imgUrl : doc.data()["ImageUrl"]
+	          imgUrl : doc.data()["ImageUrl"],
+            rating : doc.data()["Rating"]
 	        });
         	newCourseName.push(doc.data()["Name"]);
         	newCourseDesc.push(doc.data()["Description"]);

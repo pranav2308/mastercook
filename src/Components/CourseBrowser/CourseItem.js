@@ -8,8 +8,47 @@ class CourseItem extends Component {
         super(props);
     }
 
+    onClickEnrollCourse = (courseID) => {
+
+		let {enrolledCourses} = this.props.user;
+		const userID = firebase.auth.currentUser.uid;
+		
+		enrolledCourses.push({courseID : parseInt(courseID), progress : 0});
+		
+		new Promise((resolve, reject) => {
+			resolve(firebase.database.ref('users/' + userID).update({EnrolledCourses : enrolledCourses}));	
+		})
+		.then(() => {
+			this.props.setUser(Object.assign(this.props.user, {enrolledCourses : enrolledCourses}));
+			this.props.history.replace('/dashboard/');
+		})
+		.catch(error => console.log(error));
+		
+	}
+
+	routeToCoursePage = (courseID) => {
+	this.props.history.replace('/course/'.concat(courseID.toString()));
+	}
+
     render() {
-        console.log(this.props);
+        
+        const {enrolledCourses} = this.props.user;
+        const {name, description, duration, rating, courseID} = this.props;
+        let enrolledInSearchedCourse = false;
+        let buttonRenderElement;
+        for(const enrolledCourse of enrolledCourses){
+        	if(enrolledCourse.courseID === parseInt(courseID)){
+        		enrolledInSearchedCourse = true;
+        	}
+        }
+        if(enrolledInSearchedCourse){
+        	buttonRenderElement = <button class="btn btn-primary" type="submit" onClick = {() => this.routeToCoursePage(courseID)}>Continue Course</button>
+        }
+        else{
+        	buttonRenderElement = <button class="btn btn-primary" type="submit" onClick = {() => this.onClickEnrollCourse(courseID)}>Enroll Now</button>
+        }
+
+
         return(
             <section class="resultCard">
 				<div class="card">
@@ -22,8 +61,8 @@ class CourseItem extends Component {
                             <h1 class="card-text">{this.props.name}</h1>
                             <h6 class="card-text"><t>{this.props.description}</t></h6>
 							<p class="card-text"> Duration: {this.props.duration}</p>
-							<p class="card-text"> Rating: 4.5/5</p>
-							<button class="btn btn-light" type="submit">Enroll Now</button>
+							<p class="card-text"> {`Rating: ${this.props.rating}/5`}</p>
+							{buttonRenderElement}
 							</div>
 						</div>
 
