@@ -6,40 +6,63 @@ let courseRef = firebase.firestore.collection('Courses');
 class CourseItem extends Component {
     constructor(props){
         super(props);
-
-        this.state = {
-            image: "https://www.usnews.com/dims4/USNEWS/4f17cab/2147483647/thumbnail/640x420/quality/85/?url=http%3A%2F%2Fcom-usnews-beam-media.s3.amazonaws.com%2Fa9%2F14%2Fc75d491f4979a756e6108846c2e5%2F161104-tofucubes-stock.jpg",
-            name: '',
-            description: '',
-            duration: '',
-            user: ''
-        };
     }
 
-    componentDidMount(){
-        this.setState({
-            name: this.props.name,
-            description: this.props.description,
-            duration: this.props.duration,
-            user: this.props.user
-        });
-    }
+    onClickEnrollCourse = (courseID) => {
+
+		let {enrolledCourses} = this.props.user;
+		const userID = firebase.auth.currentUser.uid;
+		
+		enrolledCourses.push({courseID : parseInt(courseID), progress : 0});
+		
+		new Promise((resolve, reject) => {
+			resolve(firebase.database.ref('users/' + userID).update({EnrolledCourses : enrolledCourses}));	
+		})
+		.then(() => {
+			this.props.setUser(Object.assign(this.props.user, {enrolledCourses : enrolledCourses}));
+			this.props.history.replace('/dashboard/');
+		})
+		.catch(error => console.log(error));
+		
+	}
+
+	routeToCoursePage = (courseID) => {
+	this.props.history.replace('/course/'.concat(courseID.toString()));
+	}
 
     render() {
+        
+        const {enrolledCourses} = this.props.user;
+        const {name, description, duration, rating, courseID} = this.props;
+        let enrolledInSearchedCourse = false;
+        let buttonRenderElement;
+        for(const enrolledCourse of enrolledCourses){
+        	if(enrolledCourse.courseID === parseInt(courseID)){
+        		enrolledInSearchedCourse = true;
+        	}
+        }
+        if(enrolledInSearchedCourse){
+        	buttonRenderElement = <button class="btn btn-primary" type="submit" onClick = {() => this.routeToCoursePage(courseID)}>Continue Course</button>
+        }
+        else{
+        	buttonRenderElement = <button class="btn btn-primary" type="submit" onClick = {() => this.onClickEnrollCourse(courseID)}>Enroll Now</button>
+        }
+
+
         return(
             <section class="resultCard">
 				<div class="card">
 					<div class="row ">
 						<div class="col-sm-3 col-md-3">
-							<img src={this.state.image} class="resultCardImage"/>
+							<img src={this.props.imgUrl} class="resultCardImage"/>
 						</div>
 						<div class="col-sm-3 col-md-8 px-3">
 							<div class="card-block px-3">
-                            <h1 class="card-text">{this.state.name}</h1>
-                            <h6 class="card-text"><t>{this.state.description}</t></h6>
-							<p class="card-text"> Duration: {this.state.duration}</p>
-							<p class="card-text"> Rating: 4.5/5</p>
-							<button class="btn btn-light" type="submit">Enroll Now</button>
+                            <h1 class="card-text">{this.props.name}</h1>
+                            <h6 class="card-text"><t>{this.props.description}</t></h6>
+							<p class="card-text"> Duration: {this.props.duration}</p>
+							<p class="card-text"> {`Rating: ${this.props.rating}/5`}</p>
+							{buttonRenderElement}
 							</div>
 						</div>
 

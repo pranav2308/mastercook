@@ -18,7 +18,7 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import ViewGrades from "../ViewGrades/ViewGrades";
 import ViewStudents from "../ViewStudents/ViewStudents";
 import "./App.css";
-import { flushUser, setUser } from "./helperMethods";
+import { setUser, flushUser, setSearchResult, searchForMatches } from "./helperMethods";
 import emptyUser from "./helperObjects";
 
 class App extends React.Component {
@@ -26,10 +26,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: emptyUser,
-      isSignedIn: false
+      isSignedIn: false,
+      searchResults : ''
+
     };
     this.setUser = setUser.bind(this);
     this.flushUser = flushUser.bind(this);
+    this.setSearchResult = setSearchResult.bind(this);
+    this.searchForMatches = searchForMatches.bind(this);
   }
 
   componentWillMount() {
@@ -47,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Navbar isSignedIn={this.state.isSignedIn} />
+        <Navbar isSignedIn={this.state.isSignedIn} setSearchResult = {this.setSearchResult}/>
         <Switch>
           <Route
             exact
@@ -77,6 +81,8 @@ class App extends React.Component {
             component={CourseBrowser}
             user={this.state.user}
             setUser={this.setUser}
+            searchResults = {this.state.searchResults}
+
           />
           <AuthorizationProtectedRoute
             path="/settings/"

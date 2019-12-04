@@ -106,7 +106,7 @@ class Assignment extends React.Component{
                     </div>
                 </div>
 
-                <QuizHeading />
+                <QuizHeading assignmentID = {assignmentID}/>
 
                <QuestionList onChangeTextAnswers = {this.onChangeTextAnswers} onChangeSelectAnswers = {this.onChangeSelectAnswers}/>
                 

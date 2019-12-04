@@ -1,8 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from 'react-router-dom';
 import SearchEngine from "../SearchEngine/SearchEngine";
 
 const Navbar = props => {
+  
   const isSignedIn = props.isSignedIn;
 
   let navBarElements, logoElement;
@@ -37,7 +38,7 @@ const Navbar = props => {
             </NavLink>
           </li>
         </ul>
-        <SearchEngine />
+        <SearchEngine setSearchResult = {props.setSearchResult} {...props}/>
       </div>
     );
   } else {
@@ -67,4 +68,4 @@ const Navbar = props => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

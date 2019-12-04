@@ -38,7 +38,7 @@ body{
 }
 
 .question-text{
-    color: #b6bd8f;
+    color: #233b31 !important;
 }
 .buttonContainer {
     position :absolute;
