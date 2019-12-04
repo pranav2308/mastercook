@@ -113,7 +113,14 @@ function getRecommendedCourseID(enrolledCourses){
 
   // console.log(enrolledCourses);
   const totalRecommendedCourses = 2;
-  const totalEnrolledcourses = enrolledCourses.length;
+  let totalEnrolledcourses;
+  if(enrolledCourses){
+     totalEnrolledcourses = enrolledCourses.length;  
+  }
+  else{
+    totalEnrolledcourses = 0;
+  }
+  
   
   const totalCourses = 4;
   let recommendedCourses = [];
@@ -124,8 +131,8 @@ function getRecommendedCourseID(enrolledCourses){
 
       const recommendedCourseID = databaseIndex + 1;
       let courseEnrolled = false;
-      for(let enrolledCourse of enrolledCourses){
-        if(enrolledCourse.courseID === recommendedCourseID){
+      for(let enrolledCourseIndex = 0; enrolledCourseIndex < totalEnrolledcourses; enrolledCourseIndex++){
+        if(enrolledCourses[enrolledCourseIndex].courseID === recommendedCourseID){
           courseEnrolled = true;
           break;
         }

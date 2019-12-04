@@ -13,7 +13,12 @@ class CourseItem extends Component {
 		let {enrolledCourses} = this.props.user;
 		const userID = firebase.auth.currentUser.uid;
 		
-		enrolledCourses.push({courseID : parseInt(courseID), progress : 0});
+		if(enrolledCourses){
+			enrolledCourses.push({courseID : parseInt(courseID), progress : 0});	
+		}
+		else{
+			enrolledCourses = [{courseID : parseInt(courseID), progress : 0}];	
+		}
 		
 		new Promise((resolve, reject) => {
 			resolve(firebase.database.ref('users/' + userID).update({EnrolledCourses : enrolledCourses}));	
@@ -36,11 +41,14 @@ class CourseItem extends Component {
         const {name, description, duration, rating, courseID} = this.props;
         let enrolledInSearchedCourse = false;
         let buttonRenderElement;
-        for(const enrolledCourse of enrolledCourses){
-        	if(enrolledCourse.courseID === parseInt(courseID)){
-        		enrolledInSearchedCourse = true;
-        	}
+        if(enrolledCourses){
+        	for(let enrolledCourse of enrolledCourses){
+        		if(enrolledCourse.courseID === parseInt(courseID)){
+        			enrolledInSearchedCourse = true;
+        		}
+        	}	
         }
+        
         if(enrolledInSearchedCourse){
         	buttonRenderElement = <button class="btn btn-primary" type="submit" onClick = {() => this.routeToCoursePage(courseID)}>Continue Course</button>
         }

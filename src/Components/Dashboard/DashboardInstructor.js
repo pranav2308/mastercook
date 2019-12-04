@@ -52,7 +52,7 @@ const DashboardInstructor = (props) => {
 						  <div class="card-body">
 						    <h5 class="card-title">Tofu recipes</h5>
 						    <p class="card-text">Learn delicious tofu recipes at low cost. It's fast, healthy, and inexpensive.</p>
-						    <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Vladimir Putin</p>
+						    <p class="card-text"><span className = "font-weight-bold">Intructor:</span> Gordon Ramsey</p>
 						    <a class="btn btn-primary" onClick = {() => {props.history.replace('/course/1')}}>View/Update course</a>
 						  </div>
 						</div>
